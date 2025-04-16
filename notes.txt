@@ -14,3 +14,18 @@ which compiles JavaScript directly to native machine
 code, enhancing performance.
 4. V8 is written in C++ for speed.
 5. V8 + Backend Features = NodeJs
+
+
+
+================================
+🔌 Port kya hota hai?
+Port ek virtual gate hoti hai.
+
+Server ek machine (computer) hota hai, aur port uska specific gate jahan se data aata–jata hai.
+
+⚙️ Example:
+http://localhost:3000
+
+localhost → tumhara computer
+
+3000 → wo gate (port) jahan server sun raha hai
