@@ -32,7 +32,7 @@ http
 				// Parsing Request;
 				const bodyObj = {};
 
-				const params = URLSearchParams(parsedBody);
+				const params = new  URLSearchParams(parsedBody);
 				for (const [key, val] of params.entries()) {
 					bodyObj[key] = val;
 				}
