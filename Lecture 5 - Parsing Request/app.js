@@ -29,6 +29,13 @@ http
 			req.on("end", () => {
 				const parsedBody = Buffer.concat(body).toString();
 				console.log(parsedBody);
+				// Parsing Request;
+				const bodyObj = {};
+
+				const params = URLSearchParams(parsedBody);
+				for (const [key, val] of params.entries()) {
+					bodyObj[key] = val;
+				}
 			});
 		}
 
