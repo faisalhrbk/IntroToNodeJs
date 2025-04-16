@@ -1,0 +1,8 @@
+export import in javascript;
+
+
+1, export function multiply(a,e,f){
+
+}
+in app file
+import {multiply} from './filename'
