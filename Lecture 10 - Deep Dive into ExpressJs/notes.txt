@@ -10,3 +10,12 @@ app.use(bodyParser.urlencoded());
 
 // With this:
 app.use(express.urlencoded({ extended: true }));
+
+
+
+
+// Global middleware
+app.use(middlewareFn);
+
+// Path-specific middleware
+app.use('/admin', adminMiddleware);
