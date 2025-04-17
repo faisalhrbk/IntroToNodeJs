@@ -6,3 +6,66 @@
 // devDependencies → Development tools (e.g., Nodemon, ESLint).
 
 // scripts → Shortcuts (e.g., npm start).
+
+
+
+
+📦 NPM (Node Package Manager)
+🔹 What is NPM?
+Node.js ka default package manager hai.
+
+JavaScript packages/modules ko install, manage, aur share karne ke liye use hota hai.
+
+🔹 Common Commands:
+npm init → project ke liye package.json banata hai.
+
+npm install <package-name> → ek package install karta hai.
+
+npm install → sab packages install karta hai (jo package.json me hain).
+
+npm install -g <package> → globally install karta hai.
+
+npm uninstall <package> → package hata deta hai.
+
+npm update <package> → package update karta hai.
+
+npm list → installed packages list karta hai.
+
+🔹 package.json:
+Project ka configuration file hai.
+
+Dependencies, scripts, version info, etc. rakhta hai.
+
+🔹 node_modules/:
+Saare install kiye gaye packages is folder me store hote hain.
+
+🛠️ Commonly Used Tools with Node.js
+🔹 Nodemon
+Code me changes hone par server auto restart karta hai.
+
+Install: npm install --save-dev nodemon
+
+Run: nodemon app.js
+
+🔹 ESLint
+Code formatting aur errors check karne ke liye.
+
+Install: npm install eslint --save-dev
+
+🔹 Prettier
+Code ko auto-format karta hai.
+
+Install: npm install --save-dev prettier
+
+🔹 Dotenv
+.env file se environment variables read karta hai.
+
+Install: npm install dotenv
+
+🔹 Morgan
+HTTP request logger middleware for debugging.
+
+Install: npm install morgan
+
+🔹 Postman (External Tool)
+APIs test karne ke liye use hota hai.
