@@ -1,0 +1,12 @@
+package first body parser
+
+
+Since Express 4.16+, you don't need body-parser:
+
+javascript
+Copy
+// Replace this:
+app.use(bodyParser.urlencoded());
+
+// With this:
+app.use(express.urlencoded({ extended: true }));
