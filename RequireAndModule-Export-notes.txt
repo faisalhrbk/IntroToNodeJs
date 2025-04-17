@@ -1,0 +1,95 @@
+
+
+1. Module.exports kya hai?
+Node.js mein har file ek module hoti hai. Agar tum ek file ka code doosri file mein use karna chahte ho, to module.exports use hota hai. Ye batata hai ki kon sa code "export" karna hai.
+
+Example:
+math.js mein:
+
+javascript
+
+Copy
+function add(a, b) {
+  return a + b;
+}
+module.exports = add; // Sirf ek function export kiya
+2. Require kya hai?
+require doosri file ka exported code import karta hai.
+
+Example:
+app.js mein:
+
+javascript
+
+Copy
+const add = require('./math'); // ./math means math.js file
+console.log(add(2, 3)); // Output: 5
+3. Multiple cheezein export karna
+Agar tum ek se zyada functions ya variables export karna chahte ho, to object banake export karo.
+
+Example:
+math.js mein:
+
+javascript
+
+Copy
+function add(a, b) {
+  return a + b;
+}
+function subtract(a, b) {
+  return a - b;
+}
+module.exports = { add, subtract }; // Object mein dono functions
+app.js mein:
+
+javascript
+
+Copy
+const math = require('./math');
+console.log(math.add(5, 3)); // Output: 8
+console.log(math.subtract(5, 3)); // Output: 2
+4. Object Destructuring
+Agar tum sirf specific functions import karna chahte ho, to destructuring use karo.
+
+Example:
+app.js mein:
+
+javascript
+
+Copy
+const { add, subtract } = require('./math'); // Direct functions import
+console.log(add(5, 3)); // Output: 8
+console.log(subtract(5, 3)); // Output: 2
+5. Group Exports (Named Exports)
+Tum alag-alag cheezein directly export bhi kar sakte ho.
+
+Example:
+math.js mein:
+
+javascript
+
+Copy
+exports.add = (a, b) => a + b; // Short syntax
+exports.subtract = (a, b) => a - b;
+app.js mein:
+
+javascript
+
+Copy
+const { add, subtract } = require('./math');
+console.log(add(10, 5)); // Output: 15
+console.log(subtract(10, 5)); // Output: 5
+Important Tips
+./ likhna zaroori hai jab file same folder mein ho.
+File ka naam .js likhne ki zaroorat nahi, Node.js khud samajh jata hai.
+module.exports ko ek hi baar use karo, warna pehla wala overwrite ho jata hai.
+Agar error aaye, to check karo file ka path sahi hai ya nahi.
+
+
+Kon Sa Use Karoon?
+Multiple exports ke liye exports use karo, e.g., exports.add = ....
+Single cheez ya custom object export karne ke liye module.exports better hai.
+Hamesha yaad rakho: Node.js sirf module.exports ko export karta hai. exports bas ek helper hai.
+Short Rule:
+exports tab tak kaam karta hai jab tak tum module.exports ko overwrite na karo.
+Agar confused ho, to seedha module.exports use karo, safe rahega!

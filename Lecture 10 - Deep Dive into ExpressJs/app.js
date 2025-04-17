@@ -11,14 +11,15 @@ app.get("/", (req, res, next) => {
 		<a href="/add-home">Add Home</a>
 		`);
 });
-app.get("/add-home", (req, res, next) => {
+app.get("/host/add-home", (req, res, next) => {
 	res.send(`<h1> Register your Home Here!</h1>
 	<form action="/add-home" method="post">
 	<input type="text" name="houseName" placeholder="Enter Your House Name" />
 	<input type="submit" />
     </form>`);
 });
-app.post("/add-home", (req, res, next) => {
+app.post("/host/add-home", (req, res, next) => {
+	console.log(req.body);
 	res.send(`home registered successfully </br> 
 		<a href="/">Go to Home</a> `);
 });
