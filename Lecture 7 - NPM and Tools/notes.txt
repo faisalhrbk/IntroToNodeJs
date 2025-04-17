@@ -7,6 +7,15 @@
 
 // scripts → Shortcuts (e.g., npm start).
 
+-------------------------------
+installing packages
+
+npm install installs node modules
+-save 
+-save-dev
+-g
+-save-exact
+-force
 
 
 
