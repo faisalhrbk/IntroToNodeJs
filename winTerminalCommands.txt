@@ -1,0 +1,69 @@
+🧾 Windows Terminal Commands with Examples
+cd [folder] – Change directory
+🔸 Example: cd Documents
+
+cd .. – Move one level up
+🔸 Example: cd ..
+
+dir – List files & folders in current directory
+🔸 Example: dir
+
+mkdir [folder-name] – Create a new folder
+🔸 Example: mkdir Projects
+
+rmdir [folder-name] – Remove an empty folder
+🔸 Example: rmdir OldFolder
+
+del [file-name] – Delete a file
+🔸 Example: del notes.txt
+
+copy [source] [destination] – Copy a file
+🔸 Example: copy report.txt D:\\Backup\\
+
+move [source] [destination] – Move a file
+🔸 Example: move img.jpg D:\\Images\\
+
+cls – Clear the screen
+🔸 Example: cls
+
+echo [message] – Print a message
+🔸 Example: echo Hello World
+
+type [file-name] – Show file content
+🔸 Example: type readme.txt
+
+ren [old-name] [new-name] – Rename file or folder
+🔸 Example: ren old.txt new.txt
+
+ipconfig – Display IP & network info
+🔸 Example: ipconfig
+
+ping [domain] – Test internet connectivity
+🔸 Example: ping google.com
+
+shutdown /s /t [seconds] – Shutdown after a delay
+🔸 Example: shutdown /s /t 60
+
+tasklist – List running tasks
+🔸 Example: tasklist
+
+taskkill /IM [process] /F – Force stop a program
+🔸 Example: taskkill /IM notepad.exe /F
+
+systeminfo – Show system details
+🔸 Example: systeminfo
+
+netstat – Show network connections
+🔸 Example: netstat
+
+help – Show all available commands
+🔸 Example: help
+
+exit – Close the terminal
+🔸 Example: exit
+
+Bonus ⚡:
+
+Tab = Auto complete
+
+↑ / ↓ = Navigate command history
