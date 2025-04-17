@@ -29,3 +29,15 @@ http://localhost:3000
 localhost → tumhara computer
 
 3000 → wo gate (port) jahan server sun raha hai
+
+
+
+
+
+V8 vs Libuv
+
+v8 converts javascript code in to machine code
+
+Libuv handles async i/o operations and  provides event-driven arctitecture
+
+
