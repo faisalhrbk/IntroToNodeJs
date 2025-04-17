@@ -1,0 +1,57 @@
+🚀 Intro to Express.js
+🔹 What is Express.js?
+Ek minimal & flexible Node.js web framework hai.
+
+HTTP server banana easy ho jata hai.
+
+Middleware, Routing, Request handling – sab kuch simple kar deta hai.
+
+🔹 Why Use Express?
+Clean code structure
+
+Middleware support
+
+Routing system
+
+Easy integration with MongoDB, Mongoose, etc.
+
+REST APIs banana easy
+
+🔹 Install Express:
+bash
+Copy code
+npm install express
+🔹 Basic Example:
+js
+Copy code
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Hello, Faisal!');
+});
+
+app.listen(3000, () => {
+  console.log('Server started on port 3000');
+});
+⚔️ Node.js vs Express.js
+Feature	Node.js	Express.js
+Nature	Runtime Environment	Web Framework built on Node.js
+Level	Low-level	High-level abstraction
+Routing	Manual (http module)	Built-in routing
+Middleware	Manual handling	Built-in middleware support
+Syntax	Verbose	Clean and simple
+Project Setup	More boilerplate	Quick setup with fewer lines
+Use Case	Base for JS server-side code	Building APIs, Web apps, RESTful services
+🧠 What Express Simplifies?
+req & res handling
+
+Routing (app.get(), app.post() etc.)
+
+JSON body parsing
+
+Static files serving
+
+Error handling
+
+Middleware chaining
