@@ -39,5 +39,22 @@ V8 vs Libuv
 v8 converts javascript code in to machine code
 
 Libuv handles async i/o operations and  provides event-driven arctitecture
+libuv has worker thread
+jab libuv kammm compleate krta hai toh callback event queue mai dalta hai
+
+
+
+Event Loop Priority like which thing would execute first
+ it has six states
+
+ 
+1, timers or setTime out.
+2, pending callbacks.
+3, idle prepare.
+4, poll retrives new callbacks
+
+
+
+
 
 
