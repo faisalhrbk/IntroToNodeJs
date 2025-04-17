@@ -1,0 +1,8 @@
+// 📝 Notes :
+// npm init → package.json banata hai (Project ki settings).
+
+// dependencies → Production packages (e.g., Express, Mongoose).
+
+// devDependencies → Development tools (e.g., Nodemon, ESLint).
+
+// scripts → Shortcuts (e.g., npm start).
