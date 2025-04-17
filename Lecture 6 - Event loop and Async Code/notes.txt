@@ -1,0 +1,7 @@
+Sync Code: Line-by-line chalta hai, rukta hai.
+
+Async Code: Background mein chalta hai (e.g., setTimeout, fs.readFile).
+
+Event Loop: Async code ko manage karta hai.
+
+Promises/Async-Await: Async code ko easy banate hain.
