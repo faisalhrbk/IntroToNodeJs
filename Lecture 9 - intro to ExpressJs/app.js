@@ -7,6 +7,7 @@ const app = express();
 
 app.use((req, res, next) => {
 	console.log("came in first middleware");
+    res.send('hello world')
     next();
 });
 app.use((req, res, next) => {
