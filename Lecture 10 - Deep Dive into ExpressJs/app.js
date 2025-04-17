@@ -1,18 +1,21 @@
+//core modules
+const path = require("path");
 //external module
 const express = require("express");
 //local modules
 const userRouter = require("./routes/userRouter");
 const hostRouter = require("./routes/hostRouter");
+const rootDir = require("./utils/pathUtil");
+//middlewares
+
 const app = express();
-//middleware
 app.use(express.urlencoded({ extended: true }));
 
-app.use(userRouter);
+app.use("/", userRouter);
 app.use("/host", hostRouter);
+
 app.use((req, res, next) => {
-	res
-		.status(404)
-		.send(`<h1> Page 404 Can't get it! </h1> <a href="/">go back bitch</a>`);
+	res.status(404).sendFile(path.join(rootDir, "views", "404.html"));
 });
 
 app.listen(3000, () =>
