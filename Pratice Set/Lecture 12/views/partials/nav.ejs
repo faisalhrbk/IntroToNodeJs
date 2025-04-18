@@ -3,14 +3,14 @@
 		<ul class="flex space-x-4 text-lg">
 			<li>
 				<a
-					class="hover:bg-indigo-700 py-2 px-4 rounded-lg transition duration-200 ease-in-out"
+					class="<%= currentPage === 'home' ? 'bg-red-300' : 'hover:bg-indigo-700' %> py-2 px-4 rounded-lg transition duration-200 ease-in-out"
 					href="/"
-					>Go to Home</a
+					>Home</a
 				>
 			</li>
 			<li>
 				<a
-					class="hover:bg-indigo-700 py-2 px-4 rounded-lg transition duration-200 ease-in-out"
+					class="<%= currentPage === 'addHome' ? 'bg-purple-200' : 'hover:bg-indigo-700' %> py-2 px-4 rounded-lg transition duration-200 ease-in-out"
 					href="/host/add-home"
 					>Add Home</a
 				>
