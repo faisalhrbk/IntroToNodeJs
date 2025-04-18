@@ -5,13 +5,13 @@ const view = require("../utils/viewsPath");
 
 hostRouter.get("/add-home", (req, res, next) => {
 
-	res.render(view("addHome.ejs"));
+	res.render('addHome', {pageTitle: 'airbnb Home'});
 });
 
 const registeredHomes = [];
 hostRouter.post("/add-home", (req, res, next) => {
 	registeredHomes.push({houseName: req.body.houseName})
-	res.render(view("homeAdded.ejs"));
+	res.render('homeAdded', {pageTitle: "airbnb home"});
 });
 exports.hostRouter = hostRouter;
 exports.registeredHomes = registeredHomes;

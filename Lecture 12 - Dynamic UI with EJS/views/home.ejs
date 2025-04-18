@@ -1,33 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<script src="https://cdn.tailwindcss.com"></script>
-		<title>airbnb Home</title>
+<%- include('partials/head') %>
 	</head>
-	<body class="bg-gray-50 min-h-screen font-sans">
-		<header class="bg-indigo-600 text-white py-4 shadow-lg sticky top-0 z-10">
-			<nav class="container mx-auto flex justify-between items-center px-4">
-				<ul class="flex space-x-4 text-lg">
-					<li>
-						<a
-							class="hover:bg-indigo-700 py-2 px-4 rounded-lg transition duration-200 ease-in-out"
-							href="/"
-							>Go to Home</a
-						>
-					</li>
-					<li>
-						<a
-							class="hover:bg-indigo-700 py-2 px-4 rounded-lg transition duration-200 ease-in-out"
-							href="/host/add-home"
-							>Add Home</a
-						>
-					</li>
-				</ul>
-			</nav>
-		</header>
-		<main
+	<body >
+			<%- include('partials/nav') %>
+		<section class="bg-gray-50 min-h-screen font-sans">
+	<main
 			class="container mx-auto bg-white shadow-md rounded-xl p-8 mt-8 text-center max-w-4xl"
 		>
 			<h2
@@ -45,5 +21,6 @@
 				<% }); %>
 			</ul>
 		</main>
+		</section>
 	</body>
 </html>
