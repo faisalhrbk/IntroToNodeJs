@@ -2,28 +2,19 @@ Tailwind CSS v4 Setup Notes
 Install Command:
 Terminal mein ye run karo:
 npm install -D tailwindcss@latest @tailwindcss/cli
-package.json Scripts:
 package.json mein ye scripts add karo:
 
 "scripts": {
-  "build:css": "npx tailwindcss -i ./public/css/style.css -o ./public/css/output.css",
-  "watch:css": "npx tailwindcss -i ./public/css/style.css -o ./public/css/output.css --watch",
-  "start": "node app.js"
+ "tailwind": "npx tailwindcss -i ./public/css/style.css -o ./public/css/output.css --watch",
 }
 Public Folder aur Files:
 public/css/ folder banao.
 public/css/style.css file banao aur isme likho:
 @import "tailwindcss";
-Build karne pe public/css/output.css banega.
 
-CSS build karo:
 
-npm run build:css
+run command: npm run tailwind
 
-Development ke liye watch mode:
-npm run watch:css
-Server start:
-npm start
 Public Folder ko Static Banana:
 app.js mein ye line add karo:
 app.use(express.static(path.join(__dirname, "public")));
