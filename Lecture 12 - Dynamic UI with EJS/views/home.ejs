@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="/css/output.css" rel="stylesheet" />
+		<title>airbnb Home</title>
+	</head>
+	<body>
+		<header class="bg-purple-800 text-white p-4 shadow-2xl">
+			<nav class="container mx-auto flex justify-between items-center">
+				<ul class="flex space-x-4">
+					<li>
+						<a
+							class="hover:bg-red-400 py-2 px-4 rounded-2xl transition duration-150"
+							href="/"
+							>Go to Home</a
+						>
+					</li>
+					<li>
+						<a
+							class="hover:bg-red-400 py-2 px-4 rounded-2xl transition duration-150"
+							href="/host/add-home"
+							>Add Home</a
+						>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main
+			class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-10 text-center"
+		>
+			<h2
+				class="text-5xl text-gray-800 font-bold text-center mb-6 hover:bg-pink-300 hover:rounded-4xl"
+			>
+				Here are our Registered Homes!
+			</h2>
+			<ul>
+				<% registeredHomes.foreach((home)=>{ %>
+				<li
+					class="text-gray-700 hover:text-red-500 transition-colors duration-500"
+				>
+					<%= home.houseName %>
+				</li>
+
+				<% }); %>
+			</ul>
+		</main>
+	</body>
+</html>
