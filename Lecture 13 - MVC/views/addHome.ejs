@@ -1,0 +1,46 @@
+<%- include('partials/head') %>
+	</head>
+	<body >
+			<%- include('partials/nav') %>
+		<section class="bg-gray-50 min-h-screen font-sans flex flex-col items-center justify-center">
+			<header>
+			<h1 class="text-3xl text-white bg-indigo-600 font-semibold py-4 px-6 rounded-lg mb-6">Register your Home Here!</h1>
+		</header>
+		<main>
+			<form action="/host/add-home" method="post" class="flex flex-col items-center space-y-4">
+				<input
+					type="text"
+					name="houseName"
+					placeholder="Enter Your House Name"
+					class="w-80 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600"
+				/>
+				<input
+					type="text"
+					name="price"
+					placeholder="Price per Night"
+					class="w-80 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600"
+				/>
+				<input
+					type="text"
+					name="location"
+					placeholder="House Location"
+					class="w-80 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600"/>
+				<input type="text"
+					name="rating"
+					placeholder="Add House rating"
+					class="w-80 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600"/>
+					<input type="text"
+					name="photoUrl"
+					placeholder="Add House Photo"
+					class="w-80 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600"/>
+				<input
+					type="submit"
+					value="Submit"
+					class="w-80 bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-200 ease-in-out cursor-pointer"/>
+			</form>
+		</main>
+		</section>
+		<footer class="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
+
+	</body>
+</html>

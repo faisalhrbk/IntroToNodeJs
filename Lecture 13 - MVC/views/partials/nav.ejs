@@ -1,0 +1,20 @@
+<header class="bg-indigo-600 text-white py-4 shadow-lg sticky top-0 z-10">
+	<nav class="container mx-auto flex justify-between items-center px-4">
+		<ul class="flex space-x-4 text-lg">
+			<li>
+				<a
+					class="<%= currentPage === 'home' ? 'bg-red-300' : 'hover:bg-indigo-700' %> py-2 px-4 rounded-lg transition duration-200 ease-in-out"
+					href="/"
+					>Home</a
+				>
+			</li>
+			<li>
+				<a
+					class="<%= currentPage === 'addHome' ? 'bg-purple-200' : 'hover:bg-indigo-700' %> py-2 px-4 rounded-lg transition duration-200 ease-in-out"
+					href="/host/add-home"
+					>Add Home</a
+				>
+			</li>
+		</ul>
+	</nav>
+</header>
