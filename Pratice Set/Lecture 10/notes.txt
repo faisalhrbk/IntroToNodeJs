@@ -1,0 +1,24 @@
+const view = (file) => path.join(rootPath, 'views', file);
+res.sendFile(view('contactUs.html'));
+
+
+
+or this is even perfect
+
+// utils/viewPath.js
+const path = require('path');
+const rootPath = path.dirname(require.main.filename);
+
+const view = (file) => path.join(rootPath, 'views', file);
+
+module.exports = view;
+
+
+
+
+✅ Step 2: Ab kisi bhi file me import karo
+js
+Copy code
+const view = require('./utils/viewPath');
+
+res.sendFile(view('contactUs.html'));
