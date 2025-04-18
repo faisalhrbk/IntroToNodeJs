@@ -8,8 +8,10 @@ hostRouter.get("/add-home", (req, res, next) => {
 	res.sendFile(view("addHome.html"));
 });
 
+const registeredHomes = [];
 hostRouter.post("/add-home", (req, res, next) => {
+	registeredHomes.push({houseName: req.body.houseName})
 	res.sendFile(view("homeAdded.html"));
 });
-
-module.exports = hostRouter;
+exports.hostRouter = hostRouter;
+exports.registeredHomes = registeredHomes;
