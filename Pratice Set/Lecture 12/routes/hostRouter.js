@@ -10,7 +10,8 @@ hostRouter.get("/add-home", (req, res, next) => {
 
 const registeredHomes = [];
 hostRouter.post("/add-home", (req, res, next) => {
-	registeredHomes.push({houseName: req.body.houseName})
+	console.log(req.body)
+	registeredHomes.push(req.body)
 	res.render('homeAdded', {pageTitle: "airbnb home"});
 });
 exports.hostRouter = hostRouter;
