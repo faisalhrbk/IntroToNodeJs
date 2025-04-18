@@ -3,23 +3,23 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link href="/css/output.css" rel="stylesheet" />
+		<script src="https://cdn.tailwindcss.com"></script>
 		<title>airbnb Home</title>
 	</head>
-	<body>
-		<header class="bg-purple-800 text-white p-4 shadow-2xl">
-			<nav class="container mx-auto flex justify-between items-center">
-				<ul class="flex space-x-4">
+	<body class="bg-gray-50 min-h-screen font-sans">
+		<header class="bg-indigo-600 text-white py-4 shadow-lg sticky top-0 z-10">
+			<nav class="container mx-auto flex justify-between items-center px-4">
+				<ul class="flex space-x-4 text-lg">
 					<li>
 						<a
-							class="hover:bg-red-400 py-2 px-4 rounded-2xl transition duration-150"
+							class="hover:bg-indigo-700 py-2 px-4 rounded-lg transition duration-200 ease-in-out"
 							href="/"
 							>Go to Home</a
 						>
 					</li>
 					<li>
 						<a
-							class="hover:bg-red-400 py-2 px-4 rounded-2xl transition duration-150"
+							class="hover:bg-indigo-700 py-2 px-4 rounded-lg transition duration-200 ease-in-out"
 							href="/host/add-home"
 							>Add Home</a
 						>
@@ -28,21 +28,20 @@
 			</nav>
 		</header>
 		<main
-			class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-10 text-center"
+			class="container mx-auto bg-white shadow-md rounded-xl p-8 mt-8 text-center max-w-4xl"
 		>
 			<h2
-				class="text-5xl text-gray-800 font-bold text-center mb-6 hover:bg-pink-300 hover:rounded-4xl"
+				class="text-4xl text-gray-800 font-semibold mb-6 hover:bg-indigo-50 hover:rounded-xl transition duration-200 ease-in-out p-3"
 			>
 				Here are our Registered Homes!
 			</h2>
-			<ul>
-				<% registeredHomes.foreach((home)=>{ %>
+			<ul class="list-none space-y-3">
+				<% registeredHomes.forEach((home)=>{ %>
 				<li
-					class="text-gray-700 hover:text-red-500 transition-colors duration-500"
+					class="text-gray-600 hover:text-indigo-600 hover:bg-gray-100 hover:rounded-lg transition duration-200 ease-in-out text-xl py-2 px-4"
 				>
 					<%= home.houseName %>
 				</li>
-
 				<% }); %>
 			</ul>
 		</main>
