@@ -4,14 +4,13 @@ const path = require("path");
 const express = require("express");
 
 // local modules
+const view = require("./utils/pathUtil");
 const UserRouter = require("./routes/UserRouter");
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res, next) => {
-	res.sendFile(
-		path.join(path.dirname(require.main.filename), "views", "index.html")
-	);
+	res.sendFile(view("index.html"));
 });
 app.use(UserRouter);
 
