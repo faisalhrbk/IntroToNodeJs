@@ -10,4 +10,7 @@ const hostController = require("../controllers/hostController");
 //routes go here
 hostRouter.get("/add-home", hostController.getAddHome);
 hostRouter.post("/add-home", hostController.postAddHome);
+hostRouter.get("/home-list", hostController.getHostHomes);
+
+
 module.exports = hostRouter;
