@@ -15,11 +15,12 @@ exports.postAddHome = (req, res, next) => {
 	});
 };
 exports.getHomes = (req, res, next) => {
-    const registeredHomes = Home.fetchAll();
-	console.log(registeredHomes);
-	res.render("home", {
-		registeredHomes,
-		pageTitle: "airbnb home",
-		currentPage: "home",
+	Home.fetchAll((registeredHomes) => {
+		res.render("home", {
+			registeredHomes,
+			pageTitle: "airbnb home",
+			currentPage: "home",
+		});
 	});
+
 };
