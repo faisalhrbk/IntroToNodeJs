@@ -40,3 +40,28 @@ Edit
 const jsonStr = '{"name":"Faisal"}';
 const obj = JSON.parse(jsonStr);
 // Result: { name: "Faisal" }  (object format)
+
+
+app.get('/product/:productId', ...)
+Toh uske liye main ek mini notes bana deti hoon abhi:
+
+📘 Node.js / Express Dynamic Routes – Quick Notes
+✅ Route:
+js
+Copy
+Edit
+app.get('/product/:productId', (req, res) => {
+  console.log(req.params.productId); // dynamic value
+});
+✅ Controller style:
+js
+Copy
+Edit
+exports.getProduct = (req, res) => {
+  const id = req.params.productId;
+  res.send("Product ID: " + id);
+};
+✅ Usage:
+/product/123 → req.params.productId = "123"
+
+/user/abc/orders/99 → Multiple params possible
