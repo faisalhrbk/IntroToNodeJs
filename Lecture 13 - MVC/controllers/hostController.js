@@ -17,12 +17,3 @@ exports.postAddHome = (req, res, next) => {
 		currentPage: "homeAdded",
 	});
 };
-exports.getHomes = (req, res, next) => {
-	Home.fetchAll((registeredHomes) => {
-		res.render("store/homeList", {
-			registeredHomes,
-			pageTitle: "airbnb home",
-			currentPage: "home",
-		});
-	});
-};

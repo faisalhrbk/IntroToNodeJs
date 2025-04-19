@@ -5,8 +5,8 @@ const path = require("path");
 const express = require("express");
 
 //Local Modules
-const userRouter = require("./routes/userRouter");
-const { hostRouter } = require("./routes/hostRouter");
+const storeRouter = require("./routes/storeRouter");
+const  hostRouter  = require("./routes/hostRouter");
 const view = require("./utils/viewsPath");
 const rootDir = require("./utils/rootDir");
 const errorController = require('./controllers/error');
@@ -19,7 +19,7 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 
 //todo ROUTES GO HERE!
-app.use("/", userRouter);
+app.use("/", storeRouter);
 app.use("/host", hostRouter);
 
 app.use(errorController.pageNotFound);
