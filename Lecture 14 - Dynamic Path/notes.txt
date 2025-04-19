@@ -1,0 +1,42 @@
+package first body parser
+
+
+Since Express 4.16+, you don't need body-parser:
+
+javascript
+Copy
+// Replace this:
+app.use(bodyParser.urlencoded());
+
+// With this:
+app.use(express.urlencoded({ extended: true }));
+
+
+
+
+// Global middleware
+app.use(middlewareFn);
+
+// Path-specific middleware
+app.use('/admin', adminMiddleware);
+
+
+
+✅ JSON.stringify()
+JavaScript object ko JSON string banata hai
+
+js
+Copy
+Edit
+const obj = { name: "Faisal" };
+const jsonStr = JSON.stringify(obj);
+// Result: '{"name":"Faisal"}'  (string format)
+✅ JSON.parse()
+JSON string ko JavaScript object banata hai
+
+js
+Copy
+Edit
+const jsonStr = '{"name":"Faisal"}';
+const obj = JSON.parse(jsonStr);
+// Result: { name: "Faisal" }  (object format)

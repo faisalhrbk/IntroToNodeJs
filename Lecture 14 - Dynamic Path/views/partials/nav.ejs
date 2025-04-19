@@ -1,0 +1,50 @@
+<header class="bg-indigo-600 text-white py-4 shadow-lg sticky top-0 z-10">
+	<nav class="container mx-auto flex justify-between items-center px-4">
+		<ul class="flex space-x-4 text-lg">
+			<li>
+				<a
+					class="<%= currentPage === 'index' ? 'bg-indigo-400' : 'hover:bg-indigo-400' %> py-2 px-4 rounded-lg transition duration-200 ease-in-out"
+					href="/"
+					>airbnb</a
+				>
+			</li>
+
+			<li>
+				<a
+					class="<%= currentPage === 'home' ? 'bg-indigo-400' : 'hover:bg-indigo-400' %> py-2 px-4 rounded-lg transition duration-200 ease-in-out"
+					href="/homes"
+					>Homes List</a
+				>
+			</li>
+			<li>
+				<a
+					class="<%= currentPage === 'favorites' ? 'bg-indigo-400' : 'hover:bg-indigo-400' %> py-2 px-4 rounded-lg transition duration-200 ease-in-out"
+					href="/favorites"
+					>Favorites
+				</a>
+			</li>
+			<li>
+				<a
+					class="<%= currentPage === 'bookings' ? 'bg-indigo-400' : 'hover:bg-indigo-400' %> py-2 px-4 rounded-lg transition duration-200 ease-in-out"
+					href="/bookings"
+					>bookings</a
+				>
+			</li>
+				<li>
+				<a
+					class="<%= currentPage === 'hostHomeList' ? 'bg-indigo-400' : 'hover:bg-indigo-400' %> py-2 px-4 rounded-lg transition duration-200 ease-in-out"
+					href="/host/home-list"
+					>Host Homes</a
+				>
+			</li>
+
+			<li>
+				<a
+					class="<%= currentPage === 'jj' ? 'bg-indigo-400' : 'hover:bg-indigo-400' %> py-2 px-4 rounded-lg transition duration-200 ease-in-out"
+					href="/host/add-home"
+					>Add Home</a
+				>
+			</li>
+		</ul>
+	</nav>
+</header>
