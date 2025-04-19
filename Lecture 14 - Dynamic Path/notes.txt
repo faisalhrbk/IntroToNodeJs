@@ -65,3 +65,11 @@ exports.getProduct = (req, res) => {
 /product/123 → req.params.productId = "123"
 
 /user/abc/orders/99 → Multiple params possible
+
+
+🧠 Bonus:
+req.params → URL parameters (like /post/:id)
+
+req.query → Query string (like ?sort=asc)
+
+req.body → Form data (from POST/PUT)
