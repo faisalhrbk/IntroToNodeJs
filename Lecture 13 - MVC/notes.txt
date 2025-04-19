@@ -19,3 +19,24 @@ app.use(middlewareFn);
 
 // Path-specific middleware
 app.use('/admin', adminMiddleware);
+
+
+
+✅ JSON.stringify()
+JavaScript object ko JSON string banata hai
+
+js
+Copy
+Edit
+const obj = { name: "Faisal" };
+const jsonStr = JSON.stringify(obj);
+// Result: '{"name":"Faisal"}'  (string format)
+✅ JSON.parse()
+JSON string ko JavaScript object banata hai
+
+js
+Copy
+Edit
+const jsonStr = '{"name":"Faisal"}';
+const obj = JSON.parse(jsonStr);
+// Result: { name: "Faisal" }  (object format)

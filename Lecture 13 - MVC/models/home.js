@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const rootDir = require("../utils/rootDir");
-const registeredHomes = [];
+
 module.exports = class Home {
 	constructor(houseName, price, location, rating, photoUrl) {
 		this.houseName = houseName;
@@ -17,7 +17,12 @@ module.exports = class Home {
 			console.log("File write concluded", error)
 		);
 	}
-	static fetchAll() {
-		return registeredHomes;
+	static fetchAll(callback) {
+		const fileContent = fs.readFile(homeDataPath, (err, data) => {
+			if (!err) {
+				registeredHomes = JSON.parse(data);
+			}
+            callback(registeredHomes);
+		});
 	}
 };
