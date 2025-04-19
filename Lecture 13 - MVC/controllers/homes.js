@@ -20,4 +20,3 @@ exports.getHomes = (req, res, next) => {
 		currentPage: "home",
 	});
 };
-exports.registeredHomes = registeredHomes;
