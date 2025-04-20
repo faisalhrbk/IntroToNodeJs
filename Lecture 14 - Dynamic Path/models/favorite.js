@@ -2,34 +2,22 @@ const fs = require("fs");
 const path = require("path");
 const rootDir = require("../utils/rootDir");
 
-const homeDataPath = path.join(rootDir, "data", "homes.json");
+const favoriteDataPath = path.join(rootDir, "data", "favorite.json");
 
-module.exports = class Home {
-	constructor(houseName, price, location, rating, photoUrl) {
-		this.houseName = houseName;
-		this.price = price;
-		this.location = location;
-		this.rating = rating;
-		this.photoUrl = photoUrl;
-	}
-	save() {
-		this.id = Math.random().toString();
-		Home.fetchAll((registeredHomes) => {
-			registeredHomes.push(this);
-			fs.writeFile(homeDataPath, JSON.stringify(registeredHomes), (error) =>
-				console.log("File write concluded", error)
-			);
+module.exports = class Favorite {
+	static addToFavorite(homeId, callback) {
+		Favorite.getFavorite((favorites) => {
+			if (favorites.include(homeId)) {
+				console.log("home is already marked fav");
+			} else {
+				favorites.push(homeId);
+				fs.writeFile(favoriteDataPath, JSON.stringify(favorites), callback)
+			}
 		});
 	}
-	static fetchAll(callback) {
-		fs.readFile(homeDataPath, (err, data) => {
+	static getFavorite(id, callback) {
+		fs.readFile(favoriteDataPath, (err, data) => {
 			callback(!err ? JSON.parse(data) : []);
-		});
-	}
-	static findById(homeId, callback) {
-		this.fetchAll((homes) => {
-			const homeFound = homes.find(home => home.id == homeId);
-			callback(homeFound)
 		});
 	}
 };
