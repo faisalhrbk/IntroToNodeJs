@@ -26,3 +26,20 @@ exports.postAddHome = (req, res, next) => {
 		currentPage: "homeAdded",
 	});
 };
+exports.getEditHome = (req, res, next) => {
+	const homeId = req.params.homeId;
+	const editing = req.query.editing === "true";
+	Home.findById(homeId, (home) => {
+		if (!home) {
+			console.log("home not found");
+			return res.redirect("/host/home-list");
+		}
+		// console.log(homeId, editing, home);
+		res.render("host/editHome", {
+			pageTitle: "edit your  Home",
+			currentPage: "hostHomeList",
+			editing,
+			home,
+		});
+	});
+};
