@@ -41,10 +41,14 @@ exports.getHomeDetails = (req, res, next) => {
 			res.redirect("/homes");
 		} else {
 			res.render("store/homeDetail", {
-				home : home,
+				home: home,
 				pageTitle: "Home Detail",
 				currentPage: "home",
 			});
 		}
 	});
+};
+exports.postAddToFavorite = (req, res, next) => {
+	console.log(req.body.id);
+	res.redirect("/favorites");
 };
