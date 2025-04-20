@@ -63,3 +63,4 @@ exports.postAddToFavorite = (req, res, next) => {
 		res.redirect("/favorites");
 	});
 };
+exports.
