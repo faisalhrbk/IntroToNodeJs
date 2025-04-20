@@ -13,9 +13,16 @@ module.exports = class Home {
 		this.photoUrl = photoUrl;
 	}
 	save() {
-		this.id = Math.random().toString();
 		Home.fetchAll((registeredHomes) => {
-			registeredHomes.push(this);
+			if (this.id) {
+				registeredHomes = registeredHomes.map((home) =>
+					home.id == this.id ? this : home
+				);
+			} else {
+				this.id = Math.random().toString();
+				registeredHomes.push(this);
+			}
+
 			fs.writeFile(homeDataPath, JSON.stringify(registeredHomes), (error) =>
 				console.log("File write concluded", error)
 			);
@@ -28,8 +35,8 @@ module.exports = class Home {
 	}
 	static findById(homeId, callback) {
 		this.fetchAll((homes) => {
-			const homeFound = homes.find(home => home.id == homeId);
-			callback(homeFound)
+			const homeFound = homes.find((home) => home.id == homeId);
+			callback(homeFound);
 		});
 	}
 };

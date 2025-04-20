@@ -22,7 +22,7 @@ exports.postAddHome = (req, res, next) => {
 	const { houseName, price, location, rating, photoUrl } = req.body;
 	const home = new Home(houseName, price, location, rating, photoUrl);
 	home.save();
-	res.redirect("host/home-list");
+	res.redirect("/host/home-list");
 };
 exports.getEditHome = (req, res, next) => {
 	const homeId = req.params.homeId;
@@ -49,5 +49,5 @@ exports.postEditHome = (req, res, next) => {
 	home.id = id;
 
 	home.save();
-	res.redirect("host/homeList");
+	res.redirect("/host/home-list");
 };
