@@ -13,7 +13,7 @@
 			<form action=" /host/<%= editing ? 'edit-home': 'add-home' %>" method="post" class="space-y-6">
 				<div>
 					<label for="houseName" class="block text-sm font-medium text-gray-700 mb-1">House Id</label>
-					<input value="<%= editing ? home.id : '' %>"
+					<input type="hidden" value="<%= editing ? home.id : '' %>"
 						type="text"
 						id="houseName"
 						name="id"

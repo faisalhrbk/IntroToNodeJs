@@ -4,7 +4,7 @@ exports.getAddHome = (req, res, next) => {
 	res.render("host/editHome", {
 		pageTitle: "airbnb Home",
 		currentPage: "addHome",
-		editing : false,
+		editing: false,
 	});
 };
 exports.getHostHomes = (req, res, next) => {
@@ -22,10 +22,7 @@ exports.postAddHome = (req, res, next) => {
 	const { houseName, price, location, rating, photoUrl } = req.body;
 	const home = new Home(houseName, price, location, rating, photoUrl);
 	home.save();
-	res.render("host/homeAdded", {
-		pageTitle: "airbnb home",
-		currentPage: "homeAdded",
-	});
+	res.redirect("host/home-list");
 };
 exports.getEditHome = (req, res, next) => {
 	const homeId = req.params.homeId;
@@ -43,4 +40,14 @@ exports.getEditHome = (req, res, next) => {
 			home,
 		});
 	});
+};
+
+exports.postEditHome = (req, res, next) => {
+	console.log(req.body);
+	const { id, houseName, price, location, rating, photoUrl } = req.body;
+	const home = new Home(houseName, price, location, rating, photoUrl);
+	home.id = id;
+
+	home.save();
+	res.redirect("host/homeList");
 };
