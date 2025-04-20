@@ -9,16 +9,21 @@ module.exports = class Favorite {
 		Favorite.getFavorite((favorites) => {
 			if (favorites.includes(homeId)) {
 				callback("home is already marked fav");
-		
 			} else {
 				favorites.push(homeId);
-				fs.writeFile(favoriteDataPath, JSON.stringify(favorites), callback)
+				fs.writeFile(favoriteDataPath, JSON.stringify(favorites), callback);
 			}
 		});
 	}
 	static getFavorite(callback) {
 		fs.readFile(favoriteDataPath, (err, data) => {
 			callback(!err ? JSON.parse(data) : []);
+		});
+	}
+	static removeFavorite(delHomeId, callback) {
+		Favorite.getFavorite((homeIds) => {
+			updatedHomeIds = homeIds.filter((homeId) => delHomeId != homeId);
+			fs.writeFile(favoriteDataPath, JSON.stringify(updatedHomeIds), callback);
 		});
 	}
 };
