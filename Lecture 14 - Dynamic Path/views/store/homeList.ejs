@@ -26,12 +26,15 @@
 								<span class="font-semibold">Location:</span> 
 								<span class="text-indigo-600 truncate"><%= home.location %></span>
 							</p>
-							<p class="text-base text-gray-600"></p>
+							<p class="text-base text-gray-600">
 								<span class="font-semibold">Rating:</span> 
 								<span class="text-yellow-500"><%= home.rating %>/5</span>
 							</p>
 						</div>
-						<button class="bg-green-400 p-2 px-8 hover:bg-green-500 rounded text-white">Book</button>
+						<div class="flex space-x-2 mt-2 justify-center">
+							<a class="p-2 px-5 text-white rounded bg-blue-400 hover:bg-blue-500" href="/homes/<%= home.id %>">Details</a>
+							<button class="bg-green-400 p-2 px-5 hover:bg-green-500 rounded text-white">Book</button>
+						</div>
 					</div>
 				</div>
 				<% }); %>

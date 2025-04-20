@@ -10,6 +10,7 @@ const  hostRouter  = require("./routes/hostRouter");
 const view = require("./utils/viewsPath");
 const rootDir = require("./utils/rootDir");
 const errorController = require('./controllers/error');
+	console.log("hello");
 
 //Middlewares
 const app = express();
@@ -24,6 +25,6 @@ app.use("/host", hostRouter);
 
 app.use(errorController.pageNotFound);
 
-app.listen(3000, () =>
+app.listen(3001, () =>
 	console.log("server running on address http://localhost:3000")
 );

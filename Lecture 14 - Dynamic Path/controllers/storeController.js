@@ -10,6 +10,8 @@ exports.getIndex = (req, res, next) => {
 	});
 };
 exports.getHomes = (req, res, next) => {
+
+	
 	Home.fetchAll((registeredHomes) => {
 		res.render("store/homeList", {
 			registeredHomes,
