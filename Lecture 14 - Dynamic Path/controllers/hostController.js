@@ -1,7 +1,7 @@
 const Home = require("../models/home");
 
 exports.getAddHome = (req, res, next) => {
-	res.render("host/addHome", {
+	res.render("host/editHome", {
 		pageTitle: "airbnb Home",
 		currentPage: "addHome",
 	});
