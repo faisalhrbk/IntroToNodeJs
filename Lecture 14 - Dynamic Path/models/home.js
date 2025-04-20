@@ -39,4 +39,13 @@ module.exports = class Home {
 			callback(homeFound);
 		});
 	}
+
+	static deleteHome(homeId, callback) {
+		this.fetchAll(registeredHomes => {
+			const updatedHomes = registeredHomes.filter(home => home.id != homeId);
+			fs.writeFile(homeDataPath, JSON.stringify(updatedHomes), (error) => {
+				callback(error, updatedHomes);
+			});
+		});
+	}
 };
