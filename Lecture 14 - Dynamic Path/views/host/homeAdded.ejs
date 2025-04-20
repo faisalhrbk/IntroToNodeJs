@@ -1,14 +1,19 @@
 <%- include('../partials/head') %>
 	</head>
-	<body >
-			<%- include('../partials/nav') %>
-			<section class="bg-gray-50 min-h-screen font-sans flex flex-col items-center justify-center">
-		<header>
-			<h1 class="text-3xl text-indigo-600 font-semibold mb-6">You are Registered Successfully!</h1>
-		</header>
-		<main>
-			<a href="/" class="text-lg text-white bg-indigo-600 hover:bg-indigo-700 py-2 px-4 rounded-lg transition duration-200 ease-in-out">Go Back Home</a>
-		</main>
+	<body class="font-sans bg-gray-50">
+		<%- include('../partials/nav') %>
+		<section class="min-h-screen flex flex-col items-center justify-center px-6 py-12">
+			<div class="max-w-md w-full text-center">
+				<header class="mb-8">
+					<h1 class="text-3xl font-bold text-gray-900">You are Registered Successfully!</h1>
+					<p class="mt-3 text-gray-600">Your listing has been added to our platform.</p>
+				</header>
+				<main>
+					<a href="/" class="block w-full rounded-lg bg-rose-600 hover:bg-rose-700 text-white font-medium py-3 px-4 transition duration-200 ease-in-out">
+						Go Back Home
+					</a>
+				</main>
+			</div>
 		</section>
 	</body>
 </html>
