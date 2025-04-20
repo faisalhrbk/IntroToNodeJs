@@ -10,8 +10,6 @@ exports.getIndex = (req, res, next) => {
 	});
 };
 exports.getHomes = (req, res, next) => {
-
-	
 	Home.fetchAll((registeredHomes) => {
 		res.render("store/homeList", {
 			registeredHomes,
@@ -34,5 +32,12 @@ exports.getFavoriteList = (req, res, next) => {
 			pageTitle: "My Favorites",
 			currentPage: "favorites",
 		});
+	});
+};
+exports.getHomeDetails = (req, res, next) => {
+	const homeId = req.params.homeId;
+	res.render("store/homeDetail", {
+		pageTitle: "Home Detail",
+		currentPage: "home",
 	});
 };
