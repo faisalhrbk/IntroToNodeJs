@@ -41,24 +41,9 @@ module.exports = class Home {
 	}
 
 	static deleteHome(homeId, callback) {
-		if (!homeId) {
-			return callback("Home ID is required.");
-		}
-
-		this.fetchAll((registeredHomes) => {
-			const homeExists = registeredHomes.some((home) => home.id == homeId);
-			if (!homeExists) {
-				return callback("No home found with given ID.");
-			}
-
-			const updatedHomes = registeredHomes.filter((home) => home.id != homeId);
-
-			fs.writeFile(homeDataPath, JSON.stringify(updatedHomes), (error) => {
-				if (error) {
-					return callback("Error writing to file.");
-				}
-				callback(null, "Home deleted successfully.");
-			});
+		this.fetchAll((homes) => {
+			homes = homes.filter((home) => home.id != homeId);
+			fs.writeFile(homeDataPath, JSON.stringify(updatedHomes), callback);
 		});
 	}
 };
