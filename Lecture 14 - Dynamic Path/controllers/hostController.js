@@ -52,13 +52,16 @@ exports.postEditHome = (req, res, next) => {
 	res.redirect("/host/home-list");
 };
 
-exports.postDeleteHome = (req, res, next) => {
-	Home.deleteHome(req.body.homeId, err => {
-		if (err) {
-			console.log('Error deleting home:', err);
-			return res.redirect('/host/home-list');
-		}
-		console.log('Home deleted successfully');
-		res.redirect('/host/home-list');
-	})
+
+exports.postDeleteHome = (req, res) => {
+	const { homeId } = req.params;
+
+	if (!homeId) return res.redirect("/host/home-list");
+
+	Home.deleteHome(homeId, (err, msg) => {
+		if (err) console.error(err);
+		else console.log(msg || "Home deleted");
+		res.redirect("/host/home-list");
+	});
 };
+

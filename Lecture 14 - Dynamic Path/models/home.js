@@ -41,10 +41,23 @@ module.exports = class Home {
 	}
 
 	static deleteHome(homeId, callback) {
-		this.fetchAll(registeredHomes => {
-			const updatedHomes = registeredHomes.filter(home => home.id != homeId);
+		if (!homeId) {
+			return callback("Home ID is required.");
+		}
+
+		this.fetchAll((registeredHomes) => {
+			const homeExists = registeredHomes.some((home) => home.id == homeId);
+			if (!homeExists) {
+				return callback("No home found with given ID.");
+			}
+
+			const updatedHomes = registeredHomes.filter((home) => home.id != homeId);
+
 			fs.writeFile(homeDataPath, JSON.stringify(updatedHomes), (error) => {
-				callback(error, updatedHomes);
+				if (error) {
+					return callback("Error writing to file.");
+				}
+				callback(null, "Home deleted successfully.");
 			});
 		});
 	}
