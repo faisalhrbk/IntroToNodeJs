@@ -42,6 +42,7 @@ module.exports = class Home {
 
 	static deleteHome(homeId, callback) {
 		this.fetchAll((homes) => {
+				Favorite.removeFavorite(delHomeId);
 			homes = homes.filter((home) => home.id != homeId);
 			fs.writeFile(homeDataPath, JSON.stringify(updatedHomes), callback);
 		});

@@ -20,9 +20,11 @@ module.exports = class Favorite {
 			callback(!err ? JSON.parse(data) : []);
 		});
 	}
+
 	static removeFavorite(delHomeId, callback) {
 		Favorite.getFavorite((homeIds) => {
-			updatedHomeIds = homeIds.filter((homeId) => delHomeId != homeId);
+		
+			const updatedHomeIds = homeIds.filter((homeId) => delHomeId != homeId);
 			fs.writeFile(favoriteDataPath, JSON.stringify(updatedHomeIds), callback);
 		});
 	}

@@ -33,7 +33,7 @@ exports.getFavoriteList = (req, res, next) => {
 				registeredHomes.find((home) => home.id == homeId)
 			);
 			res.render("store/favoriteList", {
-				favoriteHomes:favoritesWithDetails,
+				favoriteHomes: favoritesWithDetails,
 				pageTitle: "My Favorites",
 				currentPage: "favorites",
 			});
@@ -63,4 +63,14 @@ exports.postAddToFavorite = (req, res, next) => {
 		res.redirect("/favorites");
 	});
 };
-exports.
+exports.postRemoveFavorite = (req, res) => {
+	const { homeId } = req.params;
+
+	Favorite.removeFavorite(homeId, (err) => {
+		if (err) {
+			console.log("Error while removing from favorites:", err);
+		}
+		res.redirect("/favorites");
+	});
+};
+
