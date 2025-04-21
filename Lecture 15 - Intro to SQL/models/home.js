@@ -27,7 +27,7 @@ module.exports = class Home {
 		}
 	}
 	static findById(homeId) {
-		return db.execute("select * from homes where id=?", [homeId]);
+		
 	}
 	static fetchAll() {
 		return db.execute("select * from homes");
