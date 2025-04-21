@@ -10,13 +10,6 @@ const hostRouter = require("./routes/hostRouter");
 const view = require("./utils/viewsPath");
 const rootDir = require("./utils/rootDir");
 const errorController = require("./controllers/error");
-const db = require("./utils/databaseUtil");
-
-db.execute("select * from homes")
-	.then(([rows , fields]) => {
-		console.log(rows);
-	})
-	.catch((err) => console.log("error while loading homes from mysql db"));
 
 //Middlewares
 const app = express();

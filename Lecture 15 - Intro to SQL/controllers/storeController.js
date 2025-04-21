@@ -2,7 +2,7 @@ const Favorite = require("../models/favorite");
 const Home = require("../models/home");
 
 exports.getIndex = (req, res, next) => {
-	Home.fetchAll((registeredHomes) => {
+	Home.fetchAll().then(([registeredHomes, fields]) => {
 		res.render("store/index", {
 			registeredHomes,
 			pageTitle: "airbnb",
@@ -73,4 +73,3 @@ exports.postRemoveFavorite = (req, res) => {
 		res.redirect("/favorites");
 	});
 };
-
