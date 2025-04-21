@@ -6,11 +6,17 @@ const express = require("express");
 
 //Local Modules
 const storeRouter = require("./routes/storeRouter");
-const  hostRouter  = require("./routes/hostRouter");
+const hostRouter = require("./routes/hostRouter");
 const view = require("./utils/viewsPath");
 const rootDir = require("./utils/rootDir");
-const errorController = require('./controllers/error');
-	console.log("hello");
+const errorController = require("./controllers/error");
+const db = require("./utils/databaseUtil");
+
+db.execute("select * from homes")
+	.then(([rows , fields]) => {
+		console.log(rows);
+	})
+	.catch((err) => console.log("error while loading homes from mysql db"));
 
 //Middlewares
 const app = express();
@@ -26,5 +32,5 @@ app.use("/host", hostRouter);
 app.use(errorController.pageNotFound);
 
 app.listen(3001, () =>
-	console.log("server running on address http://localhost:3000")
+	console.log("server running on address http://localhost:3001")
 );
