@@ -8,7 +8,7 @@ exports.getAddHome = (req, res, next) => {
 	});
 };
 exports.getHostHomes = (req, res, next) => {
-	Home.fetchAll((registeredHomes) => {
+	Home.fetchAll().then(([registeredHomes, fields]) => {
 		res.render("host/hostHomeList", {
 			registeredHomes,
 			pageTitle: " Host Home List",

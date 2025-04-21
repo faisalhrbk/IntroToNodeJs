@@ -11,7 +11,7 @@ exports.getIndex = (req, res, next) => {
 	});
 };
 exports.getHomes = (req, res, next) => {
-	Home.fetchAll((registeredHomes) => {
+	Home.fetchAll().then(([registeredHomes, fields]) => {
 		res.render("store/homeList", {
 			registeredHomes,
 			pageTitle: "Home List",
@@ -28,7 +28,7 @@ exports.getBookings = (req, res, next) => {
 };
 exports.getFavoriteList = (req, res, next) => {
 	Favorite.getFavorite((favorites) => {
-		Home.fetchAll((registeredHomes) => {
+		Home.fetchAll().then(([registeredHomes, fields]) => {
 			const favoritesWithDetails = favorites.map((homeId) =>
 				registeredHomes.find((home) => home.id == homeId)
 			);
