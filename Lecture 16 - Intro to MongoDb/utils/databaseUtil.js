@@ -1,14 +1,12 @@
-import { MongoClient } from "mongodb";
+const mongo = require("mongodb");
+const MongoClient = mongo.MongoClient;
 
-const mongoClient = new MongoClient(
-	"mongodb+srv://root:root@first-cluster.rtaxwgo.mongodb.net/?retryWrites=true&w=majority&appName=first-cluster"
-);
+const mongo_url =
+	"mongodb+srv://root:root@first-cluster.rtaxwgo.mongodb.net/?retryWrites=true&w=majority&appName=first-cluster";
 
 const mongoConnect = (callback) => {
-	mongoClient
-		.connect()
+	MongoClient.connect(mongo_url)
 		.then((client) => {
-			console.log(client);
 			callback(client);
 		})
 		.catch((err) => console.log(err));
