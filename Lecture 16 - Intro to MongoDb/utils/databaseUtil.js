@@ -1,8 +1,17 @@
-const mysql = require("mysql2");
-const pool = mysql.createPool({
-	host: "localhost",
-	user: "root",
-	password: "password",
-	database: "airbnb",
-});
-module.exports = pool.promise();
+import { MongoClient } from "mongodb";
+
+const mongoClient = new MongoClient(
+	"mongodb+srv://root:root@first-cluster.rtaxwgo.mongodb.net/?retryWrites=true&w=majority&appName=first-cluster"
+);
+
+const mongoConnect = (callback) => {
+	mongoClient
+		.connect()
+		.then((client) => {
+			console.log(client);
+			callback(client);
+		})
+		.catch((err) => console.log(err));
+};
+
+module.exports = mongoConnect;
