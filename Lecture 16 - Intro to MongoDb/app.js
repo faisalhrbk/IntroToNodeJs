@@ -10,7 +10,7 @@ const hostRouter = require("./routes/hostRouter");
 const view = require("./utils/viewsPath");
 const rootDir = require("./utils/rootDir");
 const errorController = require("./controllers/error");
-const mongoConnect = require("./utils/databaseUtil");
+const {mongoConnect} = require("./utils/databaseUtil");
 
 //Middlewares
 const app = express();
