@@ -25,8 +25,8 @@ app.use("/host", hostRouter);
 
 app.use(errorController.pageNotFound);
 
-mongoConnect((client) => {
-	console.log(client);
+mongoConnect(() => {
+	console.log('connect to mongo atlas');
 	app.listen(3001, () =>
 		console.log("server running on address http://localhost:3001")
 	);
