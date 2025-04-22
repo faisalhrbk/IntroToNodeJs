@@ -48,3 +48,5 @@ module.exports = class Home {
 		return db.execute("delete from homes where id=?", [homeId]);
 	}
 };
+
+// GITHUBSTUDENT50 - B7R46X;
