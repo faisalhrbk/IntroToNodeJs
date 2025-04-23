@@ -27,7 +27,7 @@
 							<p class="text-gray-900 mt-2">$<%= home.price %> <span class="text-gray-500">night</span></p>
 						</div>
 					
-						<form action="/favorites/remove-favorite/ <%= home.id %>" method="post">
+						<form action="/favorites/remove-favorite/ <%= home._id %>" method="post">
 							<button type="submit" class="p-2 px-4 bg-red-400 hover:bg-red-500 text-white rounded cursor-pointer">Remove from Fav</button>
 						</form>
 					

@@ -8,9 +8,11 @@ exports.getAddHome = (req, res, next) => {
 	});
 };
 exports.getHostHomes = (req, res, next) => {
-	Home.fetchAll().then(([registeredHomes, fields]) => {
+	Home.fetchAll().then((registeredHomes) => {
+		console.log(registeredHomes);
+
 		res.render("host/hostHomeList", {
-			registeredHomes,
+			registeredHomes: registeredHomes,
 			pageTitle: " Host Home List",
 			currentPage: "hostHomeList",
 		});
@@ -29,15 +31,14 @@ exports.postAddHome = (req, res, next) => {
 		photoUrl,
 		description
 	);
-	home.save().then(() => console.log('home saved successfully')
-	);
+	home.save().then(() => console.log("home saved successfully"));
 	res.redirect("/host/home-list");
 };
 exports.getEditHome = (req, res, next) => {
 	const homeId = req.params.homeId;
 	const editing = req.query.editing === "true";
-	Home.findById(homeId).then(([homes]) => {
-		const home = homes[0];
+	Home.findById(homeId).then((homes) => {
+	
 		if (!home) {
 			console.log("home not found");
 			return res.redirect("/host/home-list");
