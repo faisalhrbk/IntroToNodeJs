@@ -16,7 +16,9 @@ module.exports = class Favorite {
 	}
 
 	static removeFavorite(delHomeId) {
-	const db = getDB();
-	return db.collection("favorites").deleteOne({ houseId: delHomeId });
+		const stringId = String(delHomeId);
+
+		const db = getDB();
+		return db.collection("favorites").deleteOne({ houseId: stringId });
 	}
 };

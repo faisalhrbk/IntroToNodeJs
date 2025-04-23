@@ -69,7 +69,7 @@ exports.postAddToFavorite = (req, res, next) => {
 };
 exports.postRemoveFavorite = (req, res) => {
 	const homeId = req.params.homeId;
-	console.log(homeId);
+	console.log( 'home id is', homeId);
 
 	Favorite.removeFavorite(homeId)
 		.then(() => console.log("fav removed success"))
