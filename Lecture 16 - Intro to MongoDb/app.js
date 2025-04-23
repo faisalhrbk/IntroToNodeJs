@@ -10,7 +10,7 @@ const hostRouter = require("./routes/hostRouter");
 const view = require("./utils/viewsPath");
 const rootDir = require("./utils/rootDir");
 const errorController = require("./controllers/error");
-const {mongoConnect} = require("./utils/databaseUtil");
+const { mongoConnect } = require("./utils/databaseUtil");
 
 //Middlewares
 const app = express();
@@ -26,7 +26,7 @@ app.use("/host", hostRouter);
 app.use(errorController.pageNotFound);
 
 mongoConnect(() => {
-	console.log('connect to mongo atlas');
+	console.log("connect to mongo atlas");
 	app.listen(3001, () =>
 		console.log("server running on address http://localhost:3001")
 	);

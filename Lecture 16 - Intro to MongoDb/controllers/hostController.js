@@ -9,7 +9,7 @@ exports.getAddHome = (req, res, next) => {
 };
 exports.getHostHomes = (req, res, next) => {
 	Home.fetchAll().then((registeredHomes) => {
-		console.log(registeredHomes);
+		// console.log(registeredHomes);
 
 		res.render("host/hostHomeList", {
 			registeredHomes: registeredHomes,
@@ -20,7 +20,7 @@ exports.getHostHomes = (req, res, next) => {
 };
 
 exports.postAddHome = (req, res, next) => {
-	console.log(req.body);
+	// console.log(req.body);
 	const { houseName, price, location, rating, photoUrl, description } =
 		req.body;
 	const home = new Home(
@@ -31,14 +31,13 @@ exports.postAddHome = (req, res, next) => {
 		photoUrl,
 		description
 	);
-	home.save().then(() => console.log("home saved successfully"));
+	home.save().then(() => console.log("home created successfully"));
 	res.redirect("/host/home-list");
 };
 exports.getEditHome = (req, res, next) => {
 	const homeId = req.params.homeId;
 	const editing = req.query.editing === "true";
-	Home.findById(homeId).then((homes) => {
-	
+	Home.findById(homeId).then((home) => {
 		if (!home) {
 			console.log("home not found");
 			return res.redirect("/host/home-list");
@@ -54,7 +53,7 @@ exports.getEditHome = (req, res, next) => {
 };
 
 exports.postEditHome = (req, res, next) => {
-	console.log(req.body);
+	// console.log(req.body);
 	const { id, houseName, price, location, rating, photoUrl, description } =
 		req.body;
 	const home = new Home(
@@ -67,7 +66,7 @@ exports.postEditHome = (req, res, next) => {
 		id
 	);
 
-	home.save();
+	home.save().then(() => console.log("home update success"));
 	res.redirect("/host/home-list");
 };
 

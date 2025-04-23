@@ -9,15 +9,37 @@ module.exports = class Home {
 		this.photoUrl = photoUrl;
 		this.description = description;
 		if (_id) {
-			this.id = _id;
+			this._id = _id;
 		}
 	}
 	save() {
 		const db = getDB();
-		return db.collection("homes").insertOne(this);
+
+		if (this._id) {
+			console.log("Updating home with _id:", this._id);
+
+			const updatedFields = {
+				houseName: this.houseName,
+				price: this.price,
+				location: this.location,
+				rating: this.rating,
+				photoUrl: this.photoUrl,
+				description: this.description,
+			};
+			return db
+				.collection("homes")
+				.updateOne(
+					{ _id: new ObjectId(String(this._id)) },
+					{ $set: updatedFields }
+				);
+		} else {
+			console.log('creating new home');
+			
+			return db.collection("homes").insertOne(this);
+		}
 	}
 	static findById(homeId) {
-		console.log(homeId);
+		// console.log(homeId);
 
 		const db = getDB();
 		return db
@@ -30,6 +52,10 @@ module.exports = class Home {
 		return db.collection("homes").find().toArray();
 	}
 
-	static deleteById(homeId) {}
+	static deleteById(homeId) {
+		const db = getDB();
+		return db
+			.collection("homes")
+			.deleteOne({ _id: new ObjectId(String(homeId)) });
+	}
 };
-//odm
