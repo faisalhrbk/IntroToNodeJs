@@ -42,7 +42,7 @@ exports.getFavoriteList = (req, res, next) => {
 };
 exports.getHomeDetails = (req, res, next) => {
 	const homeId = req.params.homeId;
-	Home.findById(homeId).then((homes) => {
+	Home.findById(homeId).then((home) => {
 		if (!home) {
 			res.redirect("/homes");
 		} else {
