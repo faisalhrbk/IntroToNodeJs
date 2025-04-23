@@ -3,6 +3,7 @@ const path = require("path");
 
 //External Module
 const express = require("express");
+const { default: mongoose } = require("mongoose");
 
 //Local Modules
 const storeRouter = require("./routes/storeRouter");
@@ -10,7 +11,6 @@ const hostRouter = require("./routes/hostRouter");
 const view = require("./utils/viewsPath");
 const rootDir = require("./utils/rootDir");
 const errorController = require("./controllers/error");
-const { mongoConnect } = require("./utils/databaseUtil");
 
 //Middlewares
 const app = express();
@@ -25,9 +25,13 @@ app.use("/host", hostRouter);
 
 app.use(errorController.pageNotFound);
 
-mongoConnect(() => {
-	console.log("connect to mongo atlas");
-	app.listen(3001, () =>
-		console.log("server running on address http://localhost:3001")
-	);
-});
+const db_path =
+	"mongodb+srv://root:root@first-cluster.rtaxwgo.mongodb.net/airbnb?retryWrites=true&w=majority&appName=first-cluster";
+mongoose
+	.connect(db_path)
+	.then(() => {
+		app.listen(3001, () =>
+			console.log("server running on address http://localhost:3001")
+		);
+	})
+	.catch((err) => console.log("err while connecting to mongoDB", err));
