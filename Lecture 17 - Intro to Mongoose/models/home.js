@@ -1,5 +1,8 @@
+const mongoose  = require('mongoose');
 
-
+const homeSchema = mongoose.Schema({
+	houseName: {type: String, }
+})
 
 
 
