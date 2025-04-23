@@ -9,6 +9,7 @@
 				</h2>
 				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 					<% favoriteHomes.forEach((home)=>{ %>
+						
 					<div class="rounded-lg bg-red-50 overflow-hidden cursor-pointer hover:shadow-md transition duration-300 ease-in-out p-8">
 						<div class="relative">
 							<img src="<%= home.photoUrl %>" alt="<%= home.houseName %>" class="w-full aspect-[4/3] object-cover">
@@ -30,11 +31,13 @@
 						<form action="/favorites/remove-favorite/ <%= home._id %>" method="post">
 							<button type="submit" class="p-2 px-4 bg-red-400 hover:bg-red-500 text-white rounded cursor-pointer">Remove from Fav</button>
 						</form>
+						
 					
 					</div>
 					<% }); %>
 				</div>
 			</main>
 		</section>
+		
 	</body>
 </html>

@@ -68,12 +68,11 @@ exports.postAddToFavorite = (req, res, next) => {
 		.finally(() => res.redirect("/favorites"));
 };
 exports.postRemoveFavorite = (req, res) => {
-	const { homeId } = req.params;
+	const homeId = req.params.homeId;
+	console.log(homeId);
 
-	Favorite.removeFavorite(homeId, (err) => {
-		if (err) {
-			console.log("Error while removing from favorites:", err);
-		}
-		res.redirect("/favorites");
-	});
+	Favorite.removeFavorite(homeId)
+		.then(() => console.log("fav removed success"))
+		.catch(() => console.log("error while removing fav "))
+		.finally(() => res.redirect("/favorites"));
 };
