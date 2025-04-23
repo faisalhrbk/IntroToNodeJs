@@ -29,7 +29,8 @@ exports.postAddHome = (req, res, next) => {
 		photoUrl,
 		description
 	);
-	home.save();
+	home.save().then(() => console.log('home saved successfully')
+	);
 	res.redirect("/host/home-list");
 };
 exports.getEditHome = (req, res, next) => {
