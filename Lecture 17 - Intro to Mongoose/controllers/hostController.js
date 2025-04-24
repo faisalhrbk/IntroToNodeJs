@@ -53,27 +53,36 @@ exports.getEditHome = (req, res, next) => {
 };
 
 exports.postEditHome = (req, res, next) => {
-	// console.log(req.body);
 	const { id, houseName, price, location, rating, photoUrl, description } =
 		req.body;
-	const home = new Home(
-		houseName,
-		price,
-		location,
-		rating,
-		photoUrl,
-		description,
-		id
-	);
 
-	home.save().then(() => console.log("home update success"));
-	res.redirect("/host/home-list");
+	Home.findById(id)
+		.then((home) => {
+			home.houseName = houseName;
+			home.price = price;
+			home.location = location;
+			home.rating = rating;
+			home.photoUrl = photoUrl;
+			home.description = description;
+			home
+				.save()
+				.then((result) => {
+					console.log("home Updated success", result);
+				})
+				.catch((err) => {
+					console.log("could not able to update home", err);
+				});
+			res.redirect("/host/home-list");
+		})
+		.catch((err) => {
+			console.log("err while finding home", err);
+		});
 };
 
 exports.postDeleteHome = (req, res) => {
 	const { homeId } = req.params;
 	if (!homeId) return res.redirect("/host/home-list");
-	Home.deleteById(homeId)
+	Home.findByIdAndDelete(homeId)
 		.then(() => {
 			res.redirect("/host/home-list");
 		})
