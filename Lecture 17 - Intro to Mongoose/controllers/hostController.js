@@ -67,7 +67,7 @@ exports.postEditHome = (req, res, next) => {
 			home
 				.save()
 				.then((result) => {
-					console.log("home Updated success", result);
+					console.log("home Updated success");
 				})
 				.catch((err) => {
 					console.log("could not able to update home", err);
