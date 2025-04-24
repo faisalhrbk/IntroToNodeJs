@@ -26,21 +26,23 @@ exports.getBookings = (req, res, next) => {
 		currentPage: "bookings",
 	});
 };
-exports.getFavoriteList = (req, res, next) => {
-	Favorite.getFavorite().then((favorites) => {
-		favorites = favorites.map((fav) => fav.houseId);
-		Home.find().then((registeredHomes) => {
-			const favoriteHomes = registeredHomes.filter((home) =>
-				favorites.includes(home._id.toString())
-			);
-			favorites.includes();
-			res.render("store/favoriteList", {
-				favoriteHomes: favoriteHomes,
-				pageTitle: "My Favorites",
-				currentPage: "favorites",
-			});
+exports.getFavoriteList = async (req, res, next) => {
+	try {
+		const favorites = await Favorite.find();
+		const favoriteIds = favorites.map((fav) => fav.houseId.toString());
+		const registeredHomes = await Home.find();
+		const favoriteHomes = registeredHomes.filter((home) =>
+			favoriteIds.includes(home._id.toString())
+		);
+
+		res.render("store/favoriteList", {
+			favoriteHomes: favoriteHomes,
+			pageTitle: "My Favorites",
+			currentPage: "favorites",
 		});
-	});
+	} catch (error) {
+		next(error);
+	}
 };
 exports.getHomeDetails = (req, res, next) => {
 	const homeId = req.params.homeId;
@@ -56,23 +58,37 @@ exports.getHomeDetails = (req, res, next) => {
 		}
 	});
 };
-exports.postAddToFavorite = (req, res, next) => {
-	console.log(req.body);
-
+exports.postAddToFavorite = async (req, res, next) => {
 	const homeId = req.body.id;
-	const fav = new Favorite(homeId);
-	fav
-		.save()
-		.then(() => console.log("added to fav"))
-		.catch(() => console.log("error while adding to fav"))
-		.finally(() => res.redirect("/favorites"));
+
+	try {
+		const fav = await Favorite.findOne({ houseId: homeId });
+
+		if (fav) {
+			console.log("already marked fav");
+		} else {
+			const newFav = new Favorite({ houseId: homeId });
+			await newFav.save();
+			console.log("fav added success");
+		}
+		res.redirect("/favorites");
+	} catch (err) {
+		console.log("error while marking fav");
+		next(err);
+	}
 };
-exports.postRemoveFavorite = (req, res) => {
-	const homeId = req.params.homeId;
+exports.postRemoveFavorite = (req, res, next) => {
+	const homeId = req.params.homeId.trim(); // 👈 remove extra space
+
 	console.log("home id is", homeId);
 
-	Favorite.removeFavorite(homeId)
-		.then(() => console.log("fav removed success"))
-		.catch(() => console.log("error while removing fav "))
-		.finally(() => res.redirect("/favorites"));
+	Favorite.findOneAndDelete({ houseId: homeId })
+		.then(() => {
+			console.log("fav removed success");
+			res.redirect("/favorites");
+		})
+		.catch((error) => {
+			console.log("error while removing fav:");
+			next(error);
+		});
 };
