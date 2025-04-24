@@ -36,3 +36,5 @@ mongoose
 		);
 	})
 	.catch((err) => console.log("err while connecting to mongoDB", err));
+	
+// sit back relax and enjoy the day!
