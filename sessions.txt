@@ -1,0 +1,56 @@
+Session Kya Hai?
+Session ek tarika hai user ke data ko temporarily server par store karne ka jab wo app ke saath interact karta hai. Har user ke liye ek unique session ID banta hai, jo browser ke cookies mein save hota hai. Ye ID server par user ke data (jaise login status, preferences) se link hota hai.
+
+
+app.use(session({
+	secret: '!411sfav',
+	resave: false,
+	saveUninitialized: true,
+}));
+
+
+
+app.use(session({...})): Ye middleware har incoming request par session ko handle karta hai. Iska matlab har request ke liye session check hota hai aur zarurat par banaya ya update kiya jata hai.
+secret: '!411sfav':
+Kya Hai?: Ye ek secret string hai jo session ID ko sign karne ke liye use hoti hai, taake session data secure rahe.
+Kaam?: Ye ensure karta hai ke session cookie ko koi tamper na kare. Tumhara secret !411sfav hai, jo unique aur strong hona chahiye.
+Tip: Production mein, is secret ko environment variable mein rakho (e.g., .env file) taake secure rahe.
+resave: false:
+Kya Hai?: Ye batata hai ke session ko har request par dobara save karna hai ya nahi, chahe session mein koi change na hua ho.
+Kaam?: false ka matlab hai session sirf tab save hoga jab usme koi change hoga (jaise new data add hua). Ye performance ko behtar karta hai kyunke unnecessary database ya memory writes nahi hoti.
+saveUninitialized: true:
+Kya Hai?: Ye decide karta hai ke naye sessions jo abhi tak kisi data ke saath initialize nahi hue, unko save karna hai ya nahi.
+Kaam?: true ka matlab hai ke har naye user ke liye session create ho jayega, chahe usne koi action na kiya ho (jaise bina login kiye). Ye useful hai jab tum chaho ke har visitor ka session track ho, lekin database mein extra storage le sakta hai.
+Key-Value Pairs Ka Urdu Context (English Mein):
+secret: Ek chabi jo session ko lock aur unlock karti hai, taake data safe rahe.
+resave: Ye decide karta hai ke session ko har baar dobara likhna hai ya nahi, jab user request bhejta hai.
+saveUninitialized: Ye batata hai ke naye, khali sessions ko store karna hai ya nahi.
+Tumhare Error Ka Fix (Previous Context):
+Tumhara previous error (isLoggedIn is not defined) is liye tha kyunke isLoggedIn variable nav.ejs mein nahi thi. Session ke through isLoggedIn ko set aur pass karna hoga.
+
+Example:
+
+javascript
+
+Copy
+// Login route
+app.get('/login', (req, res) => {
+  // Session se check karo ke user logged in hai ya nahi
+  const isLoggedIn = req.session.isLoggedIn || false;
+  res.render('auth/login', { isLoggedIn });
+});
+
+// Login success ke baad
+app.post('/login', (req, res) => {
+  // Maan lo user authenticate ho gaya
+  req.session.isLoggedIn = true; // Session mein isLoggedIn set karo
+  res.redirect('/');
+});
+Session Ka Flow:
+User login karta hai, req.session.isLoggedIn = true set hota hai.
+Har request par, middleware session ko check karta hai.
+isLoggedIn ko template mein pass karo taake nav.ejs usko use kar sake.
+Agar Aur Issue Ho:
+Agar session save nahi ho raha, check karo ke express-session properly installed hai (npm install express-session).
+Session data database mein save karna hai to connect-mongo jaise store use karo.
+Share karo agar koi specific error ya code issue hai!

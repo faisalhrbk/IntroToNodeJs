@@ -4,6 +4,7 @@ const path = require("path");
 //External Module
 const express = require("express");
 const { default: mongoose } = require("mongoose");
+const session = require('express-session')
 
 //Local Modules
 const storeRouter = require("./routes/storeRouter");
@@ -20,6 +21,11 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 
 //todo ROUTES n MIDDLEWARES GO HERE!
+app.use(session({
+	secret: '!411sfav',
+	resave: false,
+	saveUninitialized: true,
+}))
 app.use((req, res, next) => {
 	req.isLoggedIn = req.get("Cookie")
 		? req.get("Cookie").split("=")[1] === "true"
