@@ -1,0 +1,32 @@
+{
+	"name": "lecture-9---intro-to-expressjs",
+	"version": "1.0.0",
+	"main": "app.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"tailwind": "npx tailwindcss -i ./public/css/input.css -o ./public/css/output.css --watch",
+		"start": "nodemon app.js & npm run tailwind",
+		"build:css": "npx tailwindcss -i ./public/css/input.css -o ./public/css/output.css",
+		"watch:css": "npx tailwindcss -i ./public/css/input.css -o ./public/css/output.css --watch"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "commonjs",
+	"description": "",
+	"dependencies": {
+		"body-parser": "^2.2.0",
+		"ejs": "^3.1.10",
+		"express": "^5.1.0",
+		"mongodb": "^6.16.0",
+		"mongoose": "^8.13.2",
+		"mysql2": "^3.14.0"
+	},
+	"devDependencies": {
+		"@tailwindcss/cli": "^4.1.4",
+		"autoprefixer": "^10.4.21",
+		"nodemon": "^3.1.9",
+		"postcss": "^8.5.3",
+		"tailwindcss": "^4.1.4"
+	}
+}
