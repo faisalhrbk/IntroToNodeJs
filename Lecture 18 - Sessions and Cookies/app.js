@@ -21,7 +21,9 @@ app.set("views", "views");
 
 //todo ROUTES n MIDDLEWARES GO HERE!
 app.use((req, res, next) => {
-	req.isLoggedIn = req.get("Cookie")?.split("=")[1] || false;
+	req.isLoggedIn = req.get("Cookie")
+		? req.get("Cookie").split("=")[1] === "true"
+		: "false";
 	next();
 });
 app.use(authRouter);

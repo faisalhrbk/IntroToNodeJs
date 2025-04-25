@@ -1,4 +1,6 @@
-<header class="bg-purple-100 shadow-sm border-b border-gray-200 py-4 sticky top-0 z-10">
+<header
+	class="bg-purple-100 shadow-sm border-b border-gray-200 py-4 sticky top-0 z-10"
+>
 	<nav class="container mx-auto flex justify-between items-center px-4">
 		<div class="flex items-center">
 			<a href="/" class="text-rose-500 font-bold text-2xl mr-8">airbnb</a>
@@ -40,12 +42,22 @@
 					>
 				</li>
 				<% } %>
-					<li>
+				<li>
+					<% if(!isLoggedIn){ %>
 					<a
 						class="<%= currentPage === 'login' ? 'text-rose-500 border-b-2 border-rose-300' : 'hover:text-rose-500' %> rounded hover:bg-red-100 bg-red-300 px-4 py-2 transition duration-200 ease-in-out"
 						href="/login"
 						>Login</a
 					>
+					<% } else { %>
+					<form action="/logout" method="POST">
+						<button
+							class=" rounded hover:bg-red-100 bg-red-300 px-4 py-2 transition duration-200 ease-in-out"
+						>
+							Logout
+						</button>
+					</form>
+					<% } %>
 				</li>
 			</ul>
 		</div>
