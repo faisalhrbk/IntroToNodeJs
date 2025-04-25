@@ -15,7 +15,7 @@ exports.postLogin = (req, res, next) => {
 
 exports.postLogout = (req, res, next) => {
 	// res.cookie("req.isLoggedIn", false);
-	res.session.destroy(() => {
+	req.session.destroy(() => {
 		res.redirect("/login");
 	});
 };
