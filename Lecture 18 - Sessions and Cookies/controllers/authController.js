@@ -3,6 +3,7 @@ exports.getLogin = (req, res, next) => {
 		pageTitle: "Login to airbnb",
 		currentPage: "login",
 		editing: "true",
+        idLoggedIn: false
 	});
 };
 
