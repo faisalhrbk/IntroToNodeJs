@@ -3,11 +3,11 @@ exports.getLogin = (req, res, next) => {
 		pageTitle: "Login to airbnb",
 		currentPage: "login",
 		editing: "true",
-        idLoggedIn: false
+		isLoggedIn: false,
 	});
 };
 
 exports.postLogin = (req, res, next) => {
-    req.isLoggedIn = true;
+	res.cookie("req.isLoggedIn", true);
 	res.redirect("/");
 };

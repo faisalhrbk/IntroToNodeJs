@@ -12,14 +12,18 @@ const authRouter = require("./routes/authRouter");
 const rootDir = require("./utils/rootDir");
 const errorController = require("./controllers/error");
 
-//Middlewares
+//express middlewares
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(rootDir, "public")));
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-//todo ROUTES GO HERE!
+//todo ROUTES n MIDDLEWARES GO HERE!
+app.use((req, res, next) => {
+	req.isLoggedIn = req.get("Cookie")?.split("=")[1] || false;
+	next();
+});
 app.use(authRouter);
 app.use(storeRouter);
 app.use("/host", (req, res, next) => {
@@ -46,5 +50,3 @@ mongoose
 		);
 	})
 	.catch((err) => console.log("err while connecting to mongoDB", err));
-
-// sit back relax and enjoy the day!
