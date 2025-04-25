@@ -1,10 +1,12 @@
 //Core Modules
 const path = require("path");
+const local_db = "mongodb://localhost:27017/airbnb";
 
 //External Module
 const express = require("express");
 const { default: mongoose } = require("mongoose");
 const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
 
 //Local Modules
 const storeRouter = require("./routes/storeRouter");
@@ -21,11 +23,17 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 
 //todo ROUTES n MIDDLEWARES GO HERE!
+
+const store = new MongoDBStore({
+	uri: local_db,
+	collection: "session",
+});
 app.use(
 	session({
 		secret: "!411sfav",
 		resave: false,
 		saveUninitialized: true,
+		store,
 	})
 );
 //sessions
@@ -36,7 +44,7 @@ app.use((req, res, next) => {
 //for cookies
 // app.use((req, res, next) => {
 // 	req.isLoggedIn = req.get("Cookie")
-// 		? req.get("Cookie").split("=")[1] === "true"
+//		? req.get("Cookie").split("=")[1] === "true"
 // 		: "false";
 // 	next();
 // });
@@ -55,7 +63,7 @@ app.use(errorController.pageNotFound);
 // Starting server and connecting to mongoose.
 const db_path =
 	"mongodb+srv://root:root@first-cluster.rtaxwgo.mongodb.net/airbnb?retryWrites=true&w=majority&appName=first-cluster";
-const local_db = "mongodb://localhost:27017/airbnb";
+
 mongoose
 	.connect(local_db)
 	.then(() => {

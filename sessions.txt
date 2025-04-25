@@ -1,3 +1,8 @@
+npm i express-session
+npm i connect-mongodb-session
+ye session ko mongo db mia store karega
+
+
 Session Kya Hai?
 Session ek tarika hai user ke data ko temporarily server par store karne ka jab wo app ke saath interact karta hai. Har user ke liye ek unique session ID banta hai, jo browser ke cookies mein save hota hai. Ye ID server par user ke data (jaise login status, preferences) se link hota hai.
 
@@ -54,3 +59,7 @@ Agar Aur Issue Ho:
 Agar session save nahi ho raha, check karo ke express-session properly installed hai (npm install express-session).
 Session data database mein save karna hai to connect-mongo jaise store use karo.
 Share karo agar koi specific error ya code issue hai!
+
+
+
+two
