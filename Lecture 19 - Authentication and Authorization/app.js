@@ -38,16 +38,10 @@ app.use(
 );
 //sessions
 app.use((req, res, next) => {
-	req.isLoggedIn = req.session.isLoggedIn; //one problem with this ye code mai ek line bhe change hoti hai toh session khtm hojata hai qki ye RAM mai store hota hai session hum abhi DB mai store karengy
+	req.isLoggedIn = req.session.isLoggedIn;
 	next();
 });
-//for cookies
-// app.use((req, res, next) => {
-// 	req.isLoggedIn = req.get("Cookie")
-//		? req.get("Cookie").split("=")[1] === "true"
-// 		: "false";
-// 	next();
-// });
+
 app.use(authRouter);
 app.use(storeRouter);
 app.use("/host", (req, res, next) => {
@@ -69,8 +63,8 @@ mongoose
 	.then(() => {
 		console.log("connected to mongoDB...");
 
-		app.listen(3001, () =>
-			console.log("server running on address http://localhost:3001")
+		app.listen(3002, () =>
+			console.log("server running on address http://localhost:3002")
 		);
 	})
 	.catch((err) => console.log("err while connecting to mongoDB", err));

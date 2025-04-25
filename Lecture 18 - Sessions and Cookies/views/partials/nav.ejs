@@ -41,32 +41,24 @@
 						>Add Home</a
 					>
 				</li>
-				<% } %> <% if(!isLoggedIn){ %>
+				<% } %>
 				<li>
+					<% if(!isLoggedIn){ %>
 					<a
-						class="rounded hover:bg-red-300 bg-red-100 px-4 py-2 transition duration-200 ease-in-out"
+						class="<%= currentPage === 'login' ? 'text-rose-500 border-b-2 border-rose-300' : 'hover:text-rose-500' %> rounded hover:bg-red-100 bg-red-300 px-4 py-2 transition duration-200 ease-in-out"
 						href="/login"
 						>Login</a
 					>
-				</li>
-				<li>
-					<a
-						class="rounded hover:bg-red-300 bg-red-100 px-4 py-2 transition duration-200 ease-in-out"
-						href="/signup"
-						>SignUp</a
-					>
-				</li>
-				<% } else { %>
-				<li>
+					<% } else { %>
 					<form action="/logout" method="POST">
 						<button
-							class="rounded hover:bg-red-100 bg-red-300 px-4 py-2 transition duration-200 ease-in-out"
+							class=" rounded hover:bg-red-100 bg-red-300 px-4 py-2 transition duration-200 ease-in-out"
 						>
 							Logout
 						</button>
 					</form>
+					<% } %>
 				</li>
-				<% } %>
 			</ul>
 		</div>
 	</nav>
