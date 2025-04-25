@@ -351,6 +351,9 @@
   .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .flex-col {
     flex-direction: column;
   }
@@ -368,6 +371,9 @@
   }
   .gap-3 {
     gap: calc(var(--spacing) * 3);
+  }
+  .gap-4 {
+    gap: calc(var(--spacing) * 4);
   }
   .gap-6 {
     gap: calc(var(--spacing) * 6);
@@ -443,14 +449,14 @@
   .bg-pink-600 {
     background-color: var(--color-pink-600);
   }
-  .bg-purple-50 {
-    background-color: var(--color-purple-50);
-  }
   .bg-purple-100 {
     background-color: var(--color-purple-100);
   }
   .bg-red-50 {
     background-color: var(--color-red-50);
+  }
+  .bg-red-100 {
+    background-color: var(--color-red-100);
   }
   .bg-red-300 {
     background-color: var(--color-red-300);
@@ -672,6 +678,13 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-red-100);
+      }
+    }
+  }
+  .hover\:bg-red-300 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-red-300);
       }
     }
   }
