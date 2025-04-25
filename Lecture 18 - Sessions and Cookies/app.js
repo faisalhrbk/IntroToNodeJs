@@ -4,7 +4,7 @@ const path = require("path");
 //External Module
 const express = require("express");
 const { default: mongoose } = require("mongoose");
-const session = require('express-session')
+const session = require("express-session");
 
 //Local Modules
 const storeRouter = require("./routes/storeRouter");
@@ -21,17 +21,25 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 
 //todo ROUTES n MIDDLEWARES GO HERE!
-app.use(session({
-	secret: '!411sfav',
-	resave: false,
-	saveUninitialized: true,
-}))
+app.use(
+	session({
+		secret: "!411sfav",
+		resave: false,
+		saveUninitialized: true,
+	})
+);
+//sessions
 app.use((req, res, next) => {
-	req.isLoggedIn = req.get("Cookie")
-		? req.get("Cookie").split("=")[1] === "true"
-		: "false";
+	req.isLoggedIn = req.session.isLoggedIn; //one problem with this ye code mai ek line bhe change hoti hai toh session khtm hojata hai qki ye RAM mai store hota hai session hum abhi DB mai store karengy
 	next();
 });
+//for cookies
+// app.use((req, res, next) => {
+// 	req.isLoggedIn = req.get("Cookie")
+// 		? req.get("Cookie").split("=")[1] === "true"
+// 		: "false";
+// 	next();
+// });
 app.use(authRouter);
 app.use(storeRouter);
 app.use("/host", (req, res, next) => {
