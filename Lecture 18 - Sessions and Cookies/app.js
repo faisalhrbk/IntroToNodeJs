@@ -22,28 +22,20 @@ app.set("views", "views");
 //todo ROUTES GO HERE!
 app.use(authRouter);
 app.use(storeRouter);
+app.use("/host", (req, res, next) => {
+	if (req.isLoggedIn) {
+		next();
+	} else {
+		res.redirect("/login");
+	}
+});
 app.use("/host", hostRouter);
 app.use(errorController.pageNotFound);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Starting server and connecting to mongoose.
 const db_path =
 	"mongodb+srv://root:root@first-cluster.rtaxwgo.mongodb.net/airbnb?retryWrites=true&w=majority&appName=first-cluster";
-	const local_db = "mongodb://localhost:27017/airbnb"
+const local_db = "mongodb://localhost:27017/airbnb";
 mongoose
 	.connect(local_db)
 	.then(() => {
