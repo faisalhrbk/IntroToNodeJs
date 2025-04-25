@@ -1,6 +1,5 @@
 //Core Modules
 const path = require("path");
-const local_db = "mongodb://localhost:27017/airbnb";
 
 //External Module
 const express = require("express");
@@ -15,6 +14,8 @@ const authRouter = require("./routes/authRouter");
 const rootDir = require("./utils/rootDir");
 const errorController = require("./controllers/error");
 
+//link
+const local_db = "mongodb://localhost:27017/airbnb";
 //express middlewares
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -55,14 +56,11 @@ app.use("/host", hostRouter);
 app.use(errorController.pageNotFound);
 
 // Starting server and connecting to mongoose.
-const db_path =
-	"mongodb+srv://root:root@first-cluster.rtaxwgo.mongodb.net/airbnb?retryWrites=true&w=majority&appName=first-cluster";
 
 mongoose
 	.connect(local_db)
 	.then(() => {
 		console.log("connected to mongoDB...");
-
 		app.listen(3002, () =>
 			console.log("server running on address http://localhost:3002")
 		);

@@ -29,3 +29,6 @@ exports.getSignup = (req, res, next) => {
 	});
 };
 
+exports.postSignup = (req, res, next) => {
+	res.redirect('/login');
+};
