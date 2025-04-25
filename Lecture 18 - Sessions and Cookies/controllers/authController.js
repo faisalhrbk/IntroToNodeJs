@@ -5,3 +5,8 @@ exports.getLogin = (req, res, next) => {
 		editing: "true",
 	});
 };
+
+exports.postLogin = (req, res, next) => {
+    req.isLoggedIn = true;
+	res.redirect("/");
+};
