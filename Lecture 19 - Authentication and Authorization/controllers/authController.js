@@ -1,3 +1,5 @@
+const { check } = require("express-validator");
+
 exports.getLogin = (req, res, next) => {
 	res.render("auth/login", {
 		pageTitle: "Login to airbnb",
@@ -29,6 +31,20 @@ exports.getSignup = (req, res, next) => {
 	});
 };
 
-exports.postSignup = (req, res, next) => {
-	res.redirect('/login');
-};
+exports.postSignup = [
+	check("firstName")
+		.notEmpty.trim()
+		.isLength({ min: 2 })
+		.withMessage("First name should be atleast 2 characters long")
+		.matches(/^[A-Za-z\s]+$/)
+		.withMessage("First Name should contain only alphabets"),
+	check("lastName")
+		.notEmpty.trim()
+		.isLength({ min: 2 })
+		.withMessage("Last name should be atleast 2 characters long")
+		.matches(/^[A-Za-z\s]+$/)
+		.withMessage("Last Name should contain only alphabets"),
+	(req, res, next) => {
+		res.redirect("/login");
+	},
+];
