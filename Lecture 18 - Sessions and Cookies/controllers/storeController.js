@@ -30,7 +30,7 @@ exports.getFavoriteList = async (req, res, next) => {
 	Favorite.find()
 		.populate("houseId")
 		.then((favorites) => {
-		const	favoriteHomes = favorites.map((fav = fav.houseId.toString()));
+		const	favoriteHomes = favorites.map((fav => fav.houseId.toString()));
 			res.render("store/favoriteList", {
 				favoriteHomes: favoriteHomes,
 				pageTitle: "My Favorites",

@@ -1,4 +1,3 @@
-exports.showLoginForm = (req,res,next){
-    console.log('hello');
-    
-}
+exports.showLoginForm = (req, res, next) => {
+	console.log("hello");
+};
