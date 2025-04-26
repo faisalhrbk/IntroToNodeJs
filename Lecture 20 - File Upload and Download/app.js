@@ -22,26 +22,33 @@ app.use(express.static(path.join(rootDir, "public")));
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-
-
-
-
 //multer codes goes here
 const uniqueName =
 	Date.now().toString() + "-" + Math.floor(Math.random() * 1000000).toString();
 
-	
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
 		cb(null, "uploads/");
 	},
 	filename: (req, file, cb) => {
-		cb(null, uniqueName);
+		cb(null, uniqueName + file.originalname);
 	},
 });
+const fileFilter = (req, file, cb) => {
+	if (
+		file.mimetype === "image/png" ||
+		file.mimetype === "image/jpg" ||
+		file.mimetype === "image/jpeg"
+	) {
+		cb(null, true);
+	} else {
+		cb(null, false);
+	}
+};
 
 const multerOptions = {
 	storage,
+	fileFilter,
 };
 app.use(multer(multerOptions).single("photo"));
 
