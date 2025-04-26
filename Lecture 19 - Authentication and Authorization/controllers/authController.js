@@ -1,7 +1,6 @@
 const { check, validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
 const User = require("../models/user");
-// const bcrypt = require("bcrypt");
-// const User = require("../models/User");
 
 exports.getLogin = (req, res, next) => {
 	res.render("auth/login", {
@@ -12,14 +11,24 @@ exports.getLogin = (req, res, next) => {
 	});
 };
 
-exports.postLogin = (req, res, next) => {
-	// res.cookie("req.isLoggedIn", true);
+exports.postLogin = async (req, res, next) => {
+	const { email, password } = req.body;
+	const user = await User.findOne({ email });
+	if (!user) {
+		return res.status(422).render("auth/login", {
+			pageTitle: "Login",
+			currentPage: "login",
+			isLoggedIn: false,
+			errors: ["User Email doesnot Exist"],
+			oldInput: { email },
+		});
+	}
+
 	req.session.isLoggedIn = true;
 	res.redirect("/");
 };
 
 exports.postLogout = (req, res, next) => {
-	// res.cookie("req.isLoggedIn", false);
 	req.session.destroy(() => {
 		res.redirect("/login");
 	});
@@ -123,26 +132,34 @@ exports.postSignup = [
 				},
 			});
 		}
-		const user = new User({ firstName, lastName, email, password, userType });
-		user
-			.save()
-			.then(() => res.redirect("/login"))
-			.catch((err) => {
-				return res.status(422).render("auth/signup", {
-					pageTitle: "Signup to Airbnb",
-					currentPage: "signup",
-					isLoggedIn: false,
-					errors: [err.message],
-					oldInput: {
-						firstName,
-						lastName,
-						email,
-						password,
-						confirmPassword,
-						userType,
-						terms,
-					},
-				});
+		bcrypt.hash(password, 5).then((password) => {
+			const user = new User({
+				firstName,
+				lastName,
+				email,
+				password,
+				userType,
 			});
+			user
+				.save()
+				.then(() => res.redirect("/login"))
+				.catch((err) => {
+					return res.status(422).render("auth/signup", {
+						pageTitle: "Signup to Airbnb",
+						currentPage: "signup",
+						isLoggedIn: false,
+						errors: [err.message],
+						oldInput: {
+							firstName,
+							lastName,
+							email,
+							password,
+							confirmPassword,
+							userType,
+							terms,
+						},
+					});
+				});
+		});
 	},
 ];

@@ -8,7 +8,7 @@
             <h1 class="text-3xl font-bold text-gray-900 mb-3">Login to your Account</h1>
             <p class="text-gray-600">Access your Airbnb account to manage your bookings and listings</p>
         </header>
-        
+        <%- include('../partials/validationErrors.ejs') %>
         <main class="bg-white rounded-xl shadow-lg p-8 w-full max-w-md mx-auto">
             <form action="/login" method="post" class="space-y-6">
                 <div>
