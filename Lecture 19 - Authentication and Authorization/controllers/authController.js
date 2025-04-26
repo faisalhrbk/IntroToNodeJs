@@ -1,4 +1,5 @@
 const { check, validationResult } = require("express-validator");
+const User = require("../models/user");
 // const bcrypt = require("bcrypt");
 // const User = require("../models/User");
 
@@ -122,21 +123,26 @@ exports.postSignup = [
 				},
 			});
 		}
-
-		// // Hash password and save user
-		// bcrypt.hash(password, 10, (err, hashedPassword) => {
-		// 	if (err) return next(err);
-		// 	const user = new User({
-		// 		firstName,
-		// 		lastName,
-		// 		email,
-		// 		password: hashedPassword,
-		// 		userType,
-		// 	});
-		// 	user
-		// 		.save()
-		// 		.then(() => res.redirect("/login"))
-		// 		.catch((err) => next(err));
-		// });
+		const user = new User({ firstName, lastName, email, password, userType });
+		user
+			.save()
+			.then(() => res.redirect("/login"))
+			.catch((err) => {
+				return res.status(422).render("auth/signup", {
+					pageTitle: "Signup to Airbnb",
+					currentPage: "signup",
+					isLoggedIn: false,
+					errors: [err.message],
+					oldInput: {
+						firstName,
+						lastName,
+						email,
+						password,
+						confirmPassword,
+						userType,
+						terms,
+					},
+				});
+			});
 	},
 ];
