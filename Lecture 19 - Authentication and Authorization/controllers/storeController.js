@@ -72,12 +72,8 @@ exports.postAddToFavorite = async (req, res, next) => {
 exports.postRemoveFavorite = async (req, res, next) => {
 	const homeId = req.params.homeId.trim();
 	const userId = req.session.user._id;
-	
-	const user = await User.findById(userId);
-	
-	if(user.favorites.includes(homeId)){
-		user.favorites = user.favorites.filter(id => id.toString() !== homeId);
-		await user.save();
-	}
+
+	await User.updateOne({ _id: userId }, { $pull: { favorites: homeId } });
+
 	res.redirect("/favorites");
 };
