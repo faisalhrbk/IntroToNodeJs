@@ -1,0 +1,119 @@
+<%- include('../partials/head') %>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+
+    <%- include('../partials/nav') %>
+    <section class="font-sans bg-gray-50 px-4 pt-5 flex flex-col">
+        <header class="mb-10 text-center">
+            <h1 class="text-3xl font-bold text-gray-900 mb-3">Create an Account</h1>
+            <p class="text-gray-600">Join Airbnb to start booking and listing properties</p>
+        </header>
+        
+    <%- include('../partials/validationErrors', { errors: errors }) %>
+        <main class="bg-white rounded-xl shadow-lg p-8 w-full max-w-md mx-auto">
+            <form action="/signup" method="POST" class="space-y-6">
+            
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                        <input 
+                            type="text"
+                            id="firstName"
+                            name="firstName"
+                            placeholder="John"
+                            value="<%= oldInput.firstName ? oldInput.firstName : '' %>"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500"
+                            required
+                        />
+                    </div>
+                    
+                    <div>
+                        <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                        <input 
+                            type="text"
+                            id="lastName"
+                            name="lastName"
+                            placeholder="Doe"
+                            value="<%= oldInput.lastName ? oldInput.lastName : '' %>"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500"
+                            required
+                        />
+                    </div>
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <input 
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="your@email.com"
+                        value="<%= oldInput.email ? oldInput.email : '' %>"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500"
+                        required
+                    />
+                </div>
+                
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a password"
+                        value="<%= oldInput.password ? oldInput.password : '' %>"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500"
+                        required
+                    />
+                </div>
+
+                <div>
+                    <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Confirm your password"
+                        value="<%= oldInput.confirmPassword ? oldInput.confirmPassword : '' %>"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500"
+                        required
+                    />
+                </div>
+
+                <div>
+                    <label for="userType" class="block text-sm font-medium text-gray-700 mb-1">Register as:</label>
+                    <select 
+                        id="userType" 
+                        name="userType"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500"
+                    >
+                        <option value="">select type:</option>
+                  </div>      <option value="guest" <%= oldInput.userType === 'guest' ? 'selected' : '' %>>Guest</option>
+                        <option value="host" <%= oldInput.userType === 'host' ? 'selected' : '' %>>Host</option>
+                    </select>
+                </div>
+                
+                <div class="flex items-center"></div>
+                    <input id="terms" name="terms" type="checkbox" class="h-4 w-4 text-rose-600 focus:ring-rose-500 border-gray-300 rounded" required >
+                    <label for="terms" class="ml-2 block text-sm text-gray-700">I agree to the <a href="/terms" class="text-rose-600 hover:text-rose-500">Terms and Conditions</a></label>
+                </div>
+                
+                <button
+                    type="submit"
+                    class="w-full bg-gradient-to-r from-rose-500 to-rose-600 text-white py-3 px-6 rounded-lg font-medium hover:from-rose-600 hover:to-rose-700 transition duration-200 ease-in-out cursor-pointer shadow-md"
+                >
+                    Sign Up
+                </button>
+            </form>
+            
+            <div class="mt-6 text-center">
+                <p class="text-sm text-gray-600">
+                    Already have an account? 
+                    <a href="/login" class="text-rose-600 hover:text-rose-500 font-medium">Log in</a>
+                </p>
+            </div>
+        </main>
+    </section>
+</body>

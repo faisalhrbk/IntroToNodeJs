@@ -1,0 +1,66 @@
+<%- include('../partials/head') %>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+    <%- include('../partials/nav') %>
+    <section class="font-sans bg-gray-50  px-4 pt-5  flex flex-col">
+        <header class="mb-10 text-center">
+            <h1 class="text-3xl font-bold text-gray-900 mb-3">Login to your Account</h1>
+            <p class="text-gray-600">Access your Airbnb account to manage your bookings and listings</p>
+        </header>
+   
+
+        <main class="bg-white rounded-xl shadow-lg p-8 w-full max-w-md mx-auto">
+            <form action="/login" method="post" class="space-y-6">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <input 
+                    value="<%= oldInput.email ? oldInput.email : '' %>"
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="your@email.com"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500"
+                        required
+                    />
+                </div>
+                 <%- include('../partials/validationErrors', { errors: errors }) %>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input 
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500"
+                        required
+                    />
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-rose-600 focus:ring-rose-500 border-gray-300 rounded">
+                        <label for="remember-me" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                    </div>
+                    <a href="/auth/reset-password" class="text-sm text-rose-600 hover:text-rose-500">Forgot password?</a>
+                </div>
+                
+                <button
+                    type="submit"
+                    class="w-full bg-gradient-to-r from-rose-500 to-rose-600 text-white py-3 px-6 rounded-lg font-medium hover:from-rose-600 hover:to-rose-700 transition duration-200 ease-in-out cursor-pointer shadow-md"
+                >
+                    Log in
+                </button>
+            </form>
+            
+            <div class="mt-6 text-center">
+                <p class="text-sm text-gray-600">
+                    Don't have an account? 
+                    <a href="/signup" class="text-rose-600 hover:text-rose-500 font-medium">Sign up</a>
+                </p>
+            </div>
+        </main>
+    </section>
+  
+</body>
+
