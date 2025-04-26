@@ -19,6 +19,7 @@ const errorController = require("./controllers/error");
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(rootDir, "public")));
+app.use('/uploads', express.static(path.join(rootDir, "uploads")));
 app.set("view engine", "ejs");
 app.set("views", "views");
 
