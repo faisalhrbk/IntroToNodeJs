@@ -1,4 +1,4 @@
-const { check , validationResult} = require("express-validator");
+const { check, validationResult } = require("express-validator");
 // const bcrypt = require("bcrypt");
 // const User = require("../models/User");
 
@@ -30,9 +30,17 @@ exports.getSignup = (req, res, next) => {
 		currentPage: "signup",
 		editing: "true",
 		isLoggedIn: false,
+		errors: [],
+		oldInput: {
+			firstName: "",
+			lastName: "",
+			email: "",
+			password: "",
+			confirmPassword: "",
+			userType: "",
+		},
 	});
 };
-
 
 exports.postSignup = [
 	check("firstName")
@@ -87,7 +95,15 @@ exports.postSignup = [
 			return true;
 		}),
 	(req, res, next) => {
-		const { firstName, lastName, email, password, userType } = req.body;
+		const {
+			firstName,
+			lastName,
+			email,
+			password,
+			userType,
+			confirmPassword,
+			terms,
+		} = req.body;
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
 			return res.status(422).render("auth/signup", {
@@ -100,9 +116,9 @@ exports.postSignup = [
 					lastName,
 					email,
 					password,
-					confirmPassword: req.body.confirmPassword,
+					confirmPassword,
 					userType,
-					terms: req.body.terms,
+					terms,
 				},
 			});
 		}
