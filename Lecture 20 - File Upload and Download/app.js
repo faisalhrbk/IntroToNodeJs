@@ -6,6 +6,7 @@ const express = require("express");
 const { default: mongoose } = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
+const multer = require("multer");
 
 //Local Modules
 const storeRouter = require("./routes/storeRouter");
@@ -14,17 +15,39 @@ const authRouter = require("./routes/authRouter");
 const rootDir = require("./utils/rootDir");
 const errorController = require("./controllers/error");
 
-//link
-const local_db = "mongodb://localhost:27017/airbnb";
-//express middlewares
+//express project packages
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(rootDir, "public")));
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-//todo ROUTES n MIDDLEWARES GO HERE!
 
+
+
+
+//multer codes goes here
+const uniqueName =
+	Date.now().toString() + "-" + Math.floor(Math.random() * 1000000).toString();
+
+	
+const storage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, "uploads/");
+	},
+	filename: (req, file, cb) => {
+		cb(null, uniqueName);
+	},
+});
+
+const multerOptions = {
+	storage,
+};
+app.use(multer(multerOptions).single("photo"));
+
+//todo----ROUTES n MIDDLEWARES GO HERE!
+//link
+const local_db = "mongodb://localhost:27017/airbnb";
 const store = new MongoDBStore({
 	uri: local_db,
 	collection: "session",
@@ -56,7 +79,6 @@ app.use("/host", hostRouter);
 app.use(errorController.pageNotFound);
 
 // Starting server and connecting to mongoose.
-
 mongoose
 	.connect(local_db)
 	.then(() => {
