@@ -29,7 +29,7 @@ exports.postLogin = async (req, res, next) => {
 	if (!isMatch) {
 		return res.status(422).render("auth/login", {
 			pageTitle: "login",
-			currentPage: login,
+			currentPage: "login",
 			isLoggedIn: false,
 			errors: ["incorrect password"],
 			oldInput: { email },
@@ -38,6 +38,7 @@ exports.postLogin = async (req, res, next) => {
 
 	req.session.isLoggedIn = true;
 	req.session.user = user;
+	await req.session.save();
 	res.redirect("/");
 };
 

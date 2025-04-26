@@ -2,6 +2,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
 </head>
 <body>
+
     <%- include('../partials/nav') %>
     <section class="font-sans bg-gray-50 px-4 pt-5 flex flex-col">
         <header class="mb-10 text-center">
@@ -12,7 +13,7 @@
     <%- include('../partials/validationErrors', { errors: errors }) %>
         <main class="bg-white rounded-xl shadow-lg p-8 w-full max-w-md mx-auto">
             <form action="/signup" method="POST" class="space-y-6">
-               
+            
                 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
@@ -89,7 +90,7 @@
                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500"
                     >
                         <option value="">select type:</option>
-                        <option value="guest" <%= oldInput.userType === 'guest' ? 'selected' : '' %>>Guest</option>
+                  </div>      <option value="guest" <%= oldInput.userType === 'guest' ? 'selected' : '' %>>Guest</option>
                         <option value="host" <%= oldInput.userType === 'host' ? 'selected' : '' %>>Host</option>
                     </select>
                 </div>
