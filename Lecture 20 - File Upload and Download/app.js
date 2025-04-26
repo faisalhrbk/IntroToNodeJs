@@ -61,8 +61,8 @@ mongoose
 	.connect(local_db)
 	.then(() => {
 		console.log("connected to mongoDB...");
-		app.listen(3002, () =>
-			console.log("server running on address http://localhost:3002")
+		app.listen(3004, () =>
+			console.log("server running on address http://localhost:3004")
 		);
 	})
 	.catch((err) => console.log("err while connecting to mongoDB", err));
