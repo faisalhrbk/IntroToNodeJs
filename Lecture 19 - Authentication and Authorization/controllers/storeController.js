@@ -8,6 +8,7 @@ exports.getIndex = (req, res, next) => {
 			pageTitle: "airbnb",
 			currentPage: "index",
 			isLoggedIn: req.isLoggedIn,
+			user: req.session.user,
 		});
 	});
 };
@@ -18,6 +19,7 @@ exports.getHomes = (req, res, next) => {
 			pageTitle: "Home List",
 			currentPage: "home",
 			isLoggedIn: req.isLoggedIn,
+			user: req.session.user,
 		});
 	});
 };
@@ -27,6 +29,7 @@ exports.getBookings = (req, res, next) => {
 		pageTitle: "My Bookings",
 		currentPage: "bookings",
 		isLoggedIn: req.isLoggedIn,
+		user: req.session.user,
 	});
 };
 exports.getFavoriteList = async (req, res, next) => {
@@ -39,6 +42,7 @@ exports.getFavoriteList = async (req, res, next) => {
 				pageTitle: "My Favorites",
 				currentPage: "favorites",
 				isLoggedIn: req.isLoggedIn,
+				user: req.session.user,
 			});
 		});
 };
@@ -53,6 +57,7 @@ exports.getHomeDetails = (req, res, next) => {
 				pageTitle: "Home Detail",
 				currentPage: "home",
 				isLoggedIn: req.isLoggedIn,
+				user: req.session.user,
 			});
 		}
 	});
@@ -70,7 +75,7 @@ exports.postAddToFavorite = async (req, res, next) => {
 			await newFav.save();
 			console.log("fav added success");
 		}
-		res.redirect("/favorites");
+		res.redirect("/favorites", { user: req.session.user });
 	} catch (err) {
 		console.log("error while marking fav");
 		next(err);

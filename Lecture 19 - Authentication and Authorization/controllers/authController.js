@@ -10,6 +10,7 @@ exports.getLogin = (req, res, next) => {
 		isLoggedIn: false,
 		errors: [],
 		oldInput: { email: "", password: "" },
+		user: {},
 	});
 };
 
@@ -23,6 +24,7 @@ exports.postLogin = async (req, res, next) => {
 			isLoggedIn: false,
 			errors: ["User Email does not Exist"],
 			oldInput: { email },
+			user: {},
 		});
 	}
 	const isMatch = await bcrypt.compare(password, user.password);
@@ -62,6 +64,7 @@ exports.getSignup = (req, res, next) => {
 			password: "",
 			confirmPassword: "",
 			userType: "",
+			user: {},
 		},
 	});
 };
@@ -144,6 +147,7 @@ exports.postSignup = [
 					userType,
 					terms,
 				},
+				user: {},
 			});
 		}
 		bcrypt.hash(password, 5).then((password) => {
@@ -172,6 +176,7 @@ exports.postSignup = [
 							userType,
 							terms,
 						},
+						user: {},
 					});
 				});
 		});
