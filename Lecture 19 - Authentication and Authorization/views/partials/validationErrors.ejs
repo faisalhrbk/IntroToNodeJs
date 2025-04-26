@@ -1,9 +1,10 @@
-<% if (errors.length > 0) { %> <% console.log(errors); %>
-<div class="col-span-2 bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
-	<ul class="list-disc pl-5 space-y-1">
-		<% errors.forEach(error => { %>
-		<li class="text-red-600 text-sm"><%= error %></li>
-		<% }); %>
-	</ul>
+<% if (errors.length > 0) { %>
+<div class="bg-white border border-red-300 rounded-lg p-4 mb-6 shadow-sm">
+    <div class="flex items-center mb-2"></div>
+     
+    <% errors.forEach(error => { %>
+      <li><%= error %></li>
+    <% }); %>
+  </ul>
 </div>
 <% } %>

@@ -8,6 +8,8 @@ exports.getLogin = (req, res, next) => {
 		currentPage: "login",
 		editing: "true",
 		isLoggedIn: false,
+		errors: [],
+		oldInput: { email: "", password: "" },
 	});
 };
 
@@ -19,12 +21,23 @@ exports.postLogin = async (req, res, next) => {
 			pageTitle: "Login",
 			currentPage: "login",
 			isLoggedIn: false,
-			errors: ["User Email doesnot Exist"],
+			errors: ["User Email does not Exist"],
+			oldInput: { email },
+		});
+	}
+	const isMatch = await bcrypt.compare(password, user.password);
+	if (!isMatch) {
+		return res.status(422).render("auth/login", {
+			pageTitle: "login",
+			currentPage: login,
+			isLoggedIn: false,
+			errors: ["incorrect password"],
 			oldInput: { email },
 		});
 	}
 
 	req.session.isLoggedIn = true;
+	req.session.user = user;
 	res.redirect("/");
 };
 
