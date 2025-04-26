@@ -23,15 +23,16 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 
 //multer codes goes here
-const uniqueName =
-	Date.now().toString() + "-" + Math.floor(Math.random() * 1000000).toString();
+
 
 const storage = multer.diskStorage({
+
 	destination: (req, file, cb) => {
 		cb(null, "uploads/");
 	},
 	filename: (req, file, cb) => {
-		cb(null, uniqueName + file.originalname);
+		const uniqueName = `${Date.now()}-${Math.floor(Math.random() * 1000000)}`;
+		cb(null, uniqueName + path.extname(file.originalname));
 	},
 });
 const fileFilter = (req, file, cb) => {
