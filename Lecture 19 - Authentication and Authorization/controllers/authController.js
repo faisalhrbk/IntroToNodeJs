@@ -1,5 +1,6 @@
-const { check } = require("express-validator");
-import isEmpty from "./../node_modules/validator/es/lib/isEmpty";
+const { check , validationResult} = require("express-validator");
+// const bcrypt = require("bcrypt");
+// const User = require("../models/User");
 
 exports.getLogin = (req, res, next) => {
 	res.render("auth/login", {
@@ -32,54 +33,56 @@ exports.getSignup = (req, res, next) => {
 	});
 };
 
+
 exports.postSignup = [
 	check("firstName")
-		.notEmpty.trim()
+		.notEmpty()
+		.trim()
 		.isLength({ min: 2 })
-		.withMessage("First name should be atleast 2 characters long")
+		.withMessage("First name should be at least 2 characters long")
 		.matches(/^[A-Za-z\s]+$/)
-		.withMessage("First Name should contain only alphabets"),
+		.withMessage("First name should contain only alphabets"),
 	check("lastName")
-		.notEmpty.trim()
+		.notEmpty()
+		.trim()
 		.isLength({ min: 2 })
-		.withMessage("Last name should be atleast 2 characters long")
+		.withMessage("Last name should be at least 2 characters long")
 		.matches(/^[A-Za-z\s]+$/)
-		.withMessage("Last Name should contain only alphabets"),
+		.withMessage("Last name should contain only alphabets"),
 	check("email")
 		.isEmail()
-		.withMessage("please enter a valid email")
+		.withMessage("Please enter a valid email")
 		.normalizeEmail(),
 	check("password")
 		.isLength({ min: 8 })
-		.withMessage("password must bhe at least 8 characters long")
+		.withMessage("Password must be at least 8 characters long")
 		.matches(/[a-z]/)
-		.withMessage("password must contain atleast one uppercase letter")
+		.withMessage("Password must contain at least one lowercase letter")
 		.matches(/[A-Z]/)
-		.withMessage("password must contain at least one uppercase letter")
+		.withMessage("Password must contain at least one uppercase letter")
 		.matches(/[!@#$%^&*()_+<>,.:;'']/)
-		.withMessage("password contain atleast one special character")
+		.withMessage("Password must contain at least one special character")
 		.matches(/[0-9]/)
-		.withMessage("password must contain one number")
-		.check("confirmPassword")
+		.withMessage("Password must contain at least one number"),
+	check("confirmPassword")
 		.trim()
 		.custom((value, { req }) => {
 			if (value !== req.body.password) {
-				throw new Error("password did not match");
-			} else {
-				return true;
+				throw new Error("Passwords do not match");
 			}
+			return true;
 		}),
 	check("userType")
 		.notEmpty()
-		.withMessage("please slect a user type bhrwe")
+		.withMessage("Please select a user type")
 		.isIn(["guest", "host"])
-		.withMessage("invalid user type"),
+		.withMessage("Invalid user type"),
 	check("terms")
 		.notEmpty()
-		.withMessage("accept terms and conditions before proceed")
+		.withMessage("Accept terms and conditions before proceeding")
 		.custom((value, { req }) => {
 			if (value !== "on") {
-				throw new console.error("lwde terms and conditions accept kr");
+				throw new Error("Please accept terms and conditions");
 			}
 			return true;
 		}),
@@ -88,14 +91,36 @@ exports.postSignup = [
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
 			return res.status(422).render("auth/signup", {
-				pageTitle: "signup to airbnb",
+				pageTitle: "Signup to Airbnb",
 				currentPage: "signup",
 				isLoggedIn: false,
 				errors: errors.array().map((err) => err.msg),
-				oldInput: { firstName, lastName, email, password, userType },
+				oldInput: {
+					firstName,
+					lastName,
+					email,
+					password,
+					confirmPassword: req.body.confirmPassword,
+					userType,
+					terms: req.body.terms,
+				},
 			});
 		}
 
-		res.redirect("/login");
+		// // Hash password and save user
+		// bcrypt.hash(password, 10, (err, hashedPassword) => {
+		// 	if (err) return next(err);
+		// 	const user = new User({
+		// 		firstName,
+		// 		lastName,
+		// 		email,
+		// 		password: hashedPassword,
+		// 		userType,
+		// 	});
+		// 	user
+		// 		.save()
+		// 		.then(() => res.redirect("/login"))
+		// 		.catch((err) => next(err));
+		// });
 	},
 ];
