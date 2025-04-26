@@ -2,7 +2,6 @@
 	"name": "lecture-9---intro-to-expressjs",
 	"version": "1.0.0",
 	"main": "app.js",
-	
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"tailwind": "npx tailwindcss -i ./public/css/input.css -o ./public/css/output.css --watch",
@@ -16,6 +15,7 @@
 	"type": "commonjs",
 	"description": "",
 	"dependencies": {
+		"bcryptjs": "^3.0.2",
 		"body-parser": "^2.2.0",
 		"connect-mongodb-session": "^5.0.0",
 		"ejs": "^3.1.10",
