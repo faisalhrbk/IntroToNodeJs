@@ -1,0 +1,4 @@
+in this folder ill learn about npm packages used in MERN STACK
+
+
+1-EXPRESS-VALIDATOR;
