@@ -1,0 +1,29 @@
+{
+    "posts": [
+        {
+            "id": 1,
+            "title": "Getting Started with React",
+            "description": "Learn the basics of React and component architecture."
+        },
+        {
+            "id": 2,
+            "title": "Advanced State Management",
+            "description": "Explore Redux, Context API, and other state management solutions."
+        },
+        {
+            "id": 3,
+            "title": "React Hooks in Depth",
+            "description": "Master useState, useEffect, and custom hooks for better React applications."
+        },
+        {
+            "id": 4,
+            "title": "Building APIs with Node.js",
+            "description": "Create robust RESTful APIs using Express and Node.js."
+        },
+        {
+            "id": 5,
+            "title": "React Query Fundamentals",
+            "description": "Learn how to manage server state efficiently with React Query."
+        }
+    ]
+}
