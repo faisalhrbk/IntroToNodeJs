@@ -25,5 +25,31 @@
             "title": "React Query Fundamentals",
             "description": "Learn how to manage server state efficiently with React Query."
         }
+    ],
+    "todos": [
+        {
+            "id": 1,
+            "title": "lroem*5"
+        },
+        {
+            "id": 2,
+            "title": "Complete React Query tutorial"
+        },
+        {
+            "id": 3,
+            "title": "Update project documentation"
+        },
+        {
+            "id": 4,
+            "title": "Fix UI responsiveness issues"
+        },
+        {
+            "id": 5,
+            "title": "Implement authentication system"
+        },
+        {
+            "id": 6,
+            "title": "Deploy application to production"
+        }
     ]
 }
