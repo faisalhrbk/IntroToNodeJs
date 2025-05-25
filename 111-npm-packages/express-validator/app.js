@@ -7,3 +7,6 @@ app.get("/", (req, res, next) => res.send("sit back relax and enjoy the show"));
 app.listen(3000, () =>
 	console.log("server running on port http://localhost:3000")
 );
+
+
+// sit back relax and enjoy the day
